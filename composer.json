@@ -1,0 +1,14 @@
+{
+    "name": "lyntouch/wp-media",
+    "description": "Wordpress Responsive Image Helper",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lyntouch",
+            "email": "info@lyntouch.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
