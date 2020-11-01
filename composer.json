@@ -9,6 +9,15 @@
             "email": "info@lyntouch.com"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {}
+    "minimum-stability": "stable",
+    "require": {
+        "league/glide": "^1.6.0",
+        "symfony/http-foundation": "^5.1",
+        "timber/timber": "^1.18"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lyntouch\\": "incl/"
+        }
+    }
 }

@@ -13,7 +13,11 @@ registerBlockType('lyntouch/wp-media', {
     attributes: {
         image: {
             type: 'object',
-            selector: 'js-book-details-image',
+            selector: 'responsive-image',
+        },
+        variations: {
+            type: 'string',
+            default: '[]',
         },
     },
     keywords: [
