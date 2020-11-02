@@ -15,6 +15,10 @@ registerBlockType('lyntouch/wp-media', {
             type: 'object',
             selector: 'responsive-image',
         },
+        imageParams: {
+            type: 'object',
+            default: {width: null, height: null, mediaWidth: null},
+        },
         variations: {
             type: 'string',
             default: '[]',

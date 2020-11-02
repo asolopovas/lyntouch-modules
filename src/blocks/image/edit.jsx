@@ -14,6 +14,8 @@ const {
     TextControl,
 } = wp.components
 
+import './editor.scss'
+
 export default (props) => {
     const {
         attributes,
@@ -26,24 +28,61 @@ export default (props) => {
         variations,
     } = attributes
 
-    function addVariation(width, height, media) {
-        if ( variations === "[]" ) {
+    function addVariation() {
             let newVar = JSON.parse(variations)
-
-            if (! newVar.includes({width, height, media}) ) {
-                newVar.push({width, height, media})
+            let newSize = {width: null, height: null, media: null}
+            console.log(newVar)
+            if (!newVar.includes(newSize)) {
+                newVar.push(newSize)
                 setAttributes({variations: JSON.stringify(newVar)})
             }
-        }
     }
 
+    let variationsArr = JSON.parse(variations)
     return ([
             <InspectorControls>
                 <PanelBody title={'Image Size Variations'}>
-                    {JSON.parse(variations).map((value) => {
-                        return (<p>{value.width}</p>)
+                    {variationsArr.map((value, index) => {
+                        return (
+                            <div className="flex flex-wrap border">
+                                <TextControl
+                                    className="w-1/2"
+                                    label="Width"
+                                    type="number"
+                                    value={value.width}
+                                    onChange={value => {
+                                        variationsArr[index].width = value
+                                        setAttributes({variations: JSON.stringify(variationsArr)});
+                                    }}
+                                    min={150}
+                                    max={3000}
+                                />
+                                <TextControl
+                                    label="Height"
+                                    type="number"
+                                    className="w-1/2"
+                                    value={value.height}
+                                    onChange={value => {
+                                        variationsArr[index].height = value
+                                        setAttributes({variations: JSON.stringify(variationsArr)});
+                                    }}
+                                    min={150}
+                                    max={2000}
+                                />
+                                <TextControl
+                                    label="Media"
+                                    type="string"
+                                    className="w-full"
+                                    value={value.media}
+                                    onChange={value => {
+                                        variationsArr[index].media = value
+                                        setAttributes({variations: JSON.stringify(variationsArr)});
+                                    }}
+                                />
+                            </div>
+                        )
                     })}
-                    <Button onClick={addVariation(100, 200, 300)} className="button">Add Variation</Button>
+                    <Button onClick={addVariation} className="button">Add Variation</Button>
                 </PanelBody>
             </InspectorControls>,
             <div className={className}>
