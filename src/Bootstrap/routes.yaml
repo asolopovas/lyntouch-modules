@@ -1,0 +1,5 @@
+# routes.yaml
+route1:
+    path:       /media
+    controller: MediaController::processImage
+    methods:    GET|HEAD

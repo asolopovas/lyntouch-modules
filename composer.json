@@ -13,11 +13,18 @@
     "require": {
         "league/glide": "^1.6.0",
         "symfony/http-foundation": "^5.1",
-        "timber/timber": "^1.18"
+        "symfony/routing": "^5.1",
+        "symfony/var-dumper": "^5.1",
+        "php-di/php-di": "^6.3",
+        "intervention/image": "^2.5"
     },
     "autoload": {
+        "files": [
+            "src/index.php",
+            "src/helpers.php"
+        ],
         "psr-4": {
-            "Lyntouch\\": "incl/"
+            "Lyntouch\\": "src/"
         }
     }
 }

@@ -2,8 +2,8 @@ function resizeImg(path, width, height) {
     return {
         width,
         height,
-        src: `${lyntouchGlobal.siteUrl}/media?image=${path}&args[w]=${width}&args[h]=${height}&args[crop]=crop`,
-        srcSet: `${lyntouchGlobal.siteUrl}/media?image=${path}&args[w]=${width}&args[h]=${height}&args[crop]=crop, ${lyntouchGlobal.siteUrl}/media?image=${path}&args[w]=${width * 2}&args[h]=${height * 2}&args[crop]=crop 2x`,
+        src: `${lyntouchGlobal.siteUrl}/media?image=${path}&args[w]=${width}&args[h]=${height}&args[fit]=crop`,
+        srcSet: `${lyntouchGlobal.siteUrl}/media?image=${path}&args[w]=${width}&args[h]=${height}&args[fit]=crop, ${lyntouchGlobal.siteUrl}/media?image=${path}&args[w]=${width * 2}&args[h]=${height * 2}&args[fit]=crop 2x`,
     }
 }
 
