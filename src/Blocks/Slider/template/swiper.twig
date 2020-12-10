@@ -1,0 +1,41 @@
+<div class="{{ block.id }} overflow-hidden relative px-6 lg:px-0" style="overflow: hidden; position: relative; width: 100%">
+    <div class="swiper-wrapper">
+        {% for slide in fields.slides %}
+            {% set portrait = slide.width < slide.height %}
+            {% set ratio = 2/3 %}
+
+            {% set width = 414 %}
+            {% set height = portrait ? (width / ratio)| round : (width * ratio) | round %}
+
+            {% set widthMd = 600 %}
+            {% set heightMd = portrait ? (widthMd / ratio) | round : (widthMd * ratio) | round %}
+
+            {% set heightLg = 600 %}
+            {% set widthLg = portrait ?  (heightLg * ratio) | round : (heightLg / ratio) | round %}
+
+            <div class="swiper-slide pb-4">
+                <picture>
+                    <source
+                        media="(min-width: 1024px)"
+                        srcset="{{ slide.url | img_resize(widthLg, heightLg) }}, {{ slide.url | img_resize(widthLg*2, heightLg*2) }} 2x"
+                    >
+                    <source
+                        media="(min-width: 768px)"
+                        srcset="
+                            {{ slide.url | img_resize(widthMd, heightMd) }},
+                            {{ slide.url | img_resize(widthMd*2, heightMd*2) }} 2x
+                        "
+                    >
+                    <img src="{{ slide.url | img_resize(width, height) }}"
+                         srset="{{ slide.url | img_resize(width*2, height*2) }} 2x"
+                         class="w-full h-auto"
+                         alt="{{ alt }}"
+                         width="{{ widthMd }}"
+                         height="{{ heightMd }}"/>
+                </picture>
+            </div>
+        {% endfor %}
+    </div>
+    {% include 'partials/arrow-button.twig' with {class: 'arrow-next'} %}
+    {% include 'partials/arrow-button.twig' with {classes: 'arrow-prev'} %}
+</div>

@@ -1,0 +1,28 @@
+.swiper-pagination-bullet {
+  font-size: 0;
+  width: 44px;
+  height: 44px;
+  position: relative;
+  &:hover {
+    cursor: pointer;
+  }
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 44px;
+    width: 44px;
+    height: 44px;
+    line-height: 36px;
+    content: "•";
+    text-align: center;
+    color: #a0a0a0;
+  }
+}
+
+.swiper-pagination-bullet-active {
+  &:before {
+    color: #5c0a75;
+  }
+}
+

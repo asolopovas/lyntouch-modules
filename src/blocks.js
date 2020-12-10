@@ -1,1 +1,1 @@
-import './Blocks/image/index';
+import './Blocks/Image/index';

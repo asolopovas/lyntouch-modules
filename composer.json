@@ -1,5 +1,5 @@
 {
-    "name": "lyntouch/wp-media",
+    "name": "lyntouch/lyntouch",
     "description": "Wordpress Responsive Image Helper",
     "type": "project",
     "license": "MIT",
@@ -20,8 +20,8 @@
     },
     "autoload": {
         "files": [
-            "src/index.php",
-            "src/helpers.php"
+            "src/helpers.php",
+            "src/index.php"
         ],
         "psr-4": {
             "Lyntouch\\": "src/"
