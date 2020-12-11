@@ -12495,6 +12495,62 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "./node_modules/when-dom-ready/dist/index.es2015.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/when-dom-ready/dist/index.es2015.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* eslint no-void: "off" */
+
+// Loaded ready states
+var loadedStates = ['interactive', 'complete'];
+
+// Return Promise
+var whenDomReady = function whenDomReady(cb, doc) {
+	return new Promise(function (resolve) {
+		// Allow doc to be passed in as the lone first param
+		if (cb && typeof cb !== 'function') {
+			doc = cb;
+			cb = null;
+		}
+
+		// Use global document if we don't have one
+		doc = doc || window.document;
+
+		// Handle DOM load
+		var done = function done() {
+			return resolve(void (cb && setTimeout(cb)));
+		};
+
+		// Resolve now if DOM has already loaded
+		// Otherwise wait for DOMContentLoaded
+		if (loadedStates.indexOf(doc.readyState) !== -1) {
+			done();
+		} else {
+			doc.addEventListener('DOMContentLoaded', done);
+		}
+	});
+};
+
+// Promise chain helper
+whenDomReady.resume = function (doc) {
+	return function (val) {
+		return whenDomReady(doc).then(function () {
+			return val;
+		});
+	};
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (whenDomReady);
+//# sourceMappingURL=index.es2015.js.map
+
+
+/***/ }),
+
 /***/ "./src/Blocks/Image/editor.scss":
 /*!**************************************!*\
   !*** ./src/Blocks/Image/editor.scss ***!
@@ -12529,11 +12585,14 @@ __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var lodash_debounce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash/debounce */ "./node_modules/lodash/debounce.js");
 /* harmony import */ var lodash_debounce__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_debounce__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
+/* harmony import */ var when_dom_ready__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! when-dom-ready */ "./node_modules/when-dom-ready/dist/index.es2015.js");
+
 
 
 swiper__WEBPACK_IMPORTED_MODULE_1__["Swiper"].use([swiper__WEBPACK_IMPORTED_MODULE_1__["Navigation"], swiper__WEBPACK_IMPORTED_MODULE_1__["Pagination"]]);
 global.Swiper = swiper__WEBPACK_IMPORTED_MODULE_1__["Swiper"];
 global.debounce = lodash_debounce__WEBPACK_IMPORTED_MODULE_0___default.a;
+global.whenDomReady = when_dom_ready__WEBPACK_IMPORTED_MODULE_2__["default"];
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),

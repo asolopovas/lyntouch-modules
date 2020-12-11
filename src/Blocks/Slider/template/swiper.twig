@@ -1,4 +1,4 @@
-<div class="{{ block.id }} overflow-hidden relative px-6 lg:px-0" style="overflow: hidden; position: relative; width: 100%">
+<div class="{{ block.id }} px-6 lg:px-0" style="overflow: hidden; position: relative; width: 100%">
     <div class="swiper-wrapper">
         {% for slide in fields.slides %}
             {% set portrait = slide.width < slide.height %}
@@ -17,17 +17,22 @@
                 <picture>
                     <source
                         media="(min-width: 1024px)"
-                        srcset="{{ slide.url | img_resize(widthLg, heightLg) }}, {{ slide.url | img_resize(widthLg*2, heightLg*2) }} 2x"
+                        srcset="
+                            {{ resize(slide.url, widthLg, heightLg) }},
+                            {{ resize(slide.url,widthLg*2, heightLg*2) }} 2x,
+                            {{ resize(slide.url,widthLg*3, heightLg*3) }} 3x
+                        "
                     >
                     <source
                         media="(min-width: 768px)"
                         srcset="
-                            {{ slide.url | img_resize(widthMd, heightMd) }},
-                            {{ slide.url | img_resize(widthMd*2, heightMd*2) }} 2x
+                            {{ resize(slide.url, widthMd, heightMd) }},
+                            {{ resize(slide.url, widthMd*2, heightMd*2) }} 2x,
+                            {{ resize(slide.url, widthMd*3, heightMd*3) }} 3x
                         "
                     >
-                    <img src="{{ slide.url | img_resize(width, height) }}"
-                         srset="{{ slide.url | img_resize(width*2, height*2) }} 2x"
+                    <img src="{{ resize(slide.url, width, height) }}"
+                         srset="{{ resize(slide.url, width*2, height*2) }} 2x"
                          class="w-full h-auto"
                          alt="{{ alt }}"
                          width="{{ widthMd }}"

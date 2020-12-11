@@ -1,14 +1,13 @@
 <?php
 
 use Lyntouch\Blocks\Image\ImageBlock;
-use Lyntouch\Blocks\Slider\SliderBlock;
 use Lyntouch\Bootstrap\App;
+use Lyntouch\Blocks\Slider\SliderBlock;
 
 
-require_once __DIR__."/Blocks/Slider/SliderBlock.php";
-require_once __DIR__."/acf/setup.php";
-
+# Load Image cropper
 add_action('plugins_loaded', [new App, 'init']);
+# Load Image Block
 add_action('init', [new ImageBlock, 'setup']);
 
-
+(new SliderBlock())->setup();
