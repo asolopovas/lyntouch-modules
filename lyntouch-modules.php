@@ -12,7 +12,17 @@
  * @package CGB
  */
 
+use Lyntouch\Blocks\Image\ImageBlock;
+use Lyntouch\Bootstrap\App;
+use Lyntouch\Blocks\Slider\SliderBlock;
 
 if (file_exists(__DIR__.'/vendor/autoload.php')) {
     require_once __DIR__.'/vendor/autoload.php';
 }
+
+# Load Image cropper
+add_action('plugins_loaded', [new App, 'init']);
+# Load Image Block
+add_action('init', [new ImageBlock, 'setup']);
+
+(new SliderBlock())->setup();

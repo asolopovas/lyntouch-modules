@@ -12615,10 +12615,10 @@ global.whenDomReady = when_dom_ready__WEBPACK_IMPORTED_MODULE_2__["default"];
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/andrius/www/alisiagreen.test/wp-content/plugins/lyntouch-blocks/src/Blocks/Slider/js/swiper.js */"./src/Blocks/Slider/js/swiper.js");
-__webpack_require__(/*! /home/andrius/www/alisiagreen.test/wp-content/plugins/lyntouch-blocks/src/Blocks/Image/style.scss */"./src/Blocks/Image/style.scss");
-__webpack_require__(/*! /home/andrius/www/alisiagreen.test/wp-content/plugins/lyntouch-blocks/src/Blocks/Image/editor.scss */"./src/Blocks/Image/editor.scss");
-module.exports = __webpack_require__(/*! /home/andrius/www/alisiagreen.test/wp-content/plugins/lyntouch-blocks/src/Blocks/Slider/sass/swiper.scss */"./src/Blocks/Slider/sass/swiper.scss");
+__webpack_require__(/*! /home/andrius/www/alisiagreen.test/wp-content/plugins/lyntouch-modules/src/Blocks/Slider/js/swiper.js */"./src/Blocks/Slider/js/swiper.js");
+__webpack_require__(/*! /home/andrius/www/alisiagreen.test/wp-content/plugins/lyntouch-modules/src/Blocks/Image/style.scss */"./src/Blocks/Image/style.scss");
+__webpack_require__(/*! /home/andrius/www/alisiagreen.test/wp-content/plugins/lyntouch-modules/src/Blocks/Image/editor.scss */"./src/Blocks/Image/editor.scss");
+module.exports = __webpack_require__(/*! /home/andrius/www/alisiagreen.test/wp-content/plugins/lyntouch-modules/src/Blocks/Slider/sass/swiper.scss */"./src/Blocks/Slider/sass/swiper.scss");
 
 
 /***/ })

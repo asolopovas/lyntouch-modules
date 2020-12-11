@@ -317,7 +317,7 @@ function resizeImg(path, width, height) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/andrius/www/alisiagreen.test/wp-content/plugins/lyntouch-blocks/src/Blocks/Image/index.js */"./src/Blocks/Image/index.js");
+module.exports = __webpack_require__(/*! /home/andrius/www/alisiagreen.test/wp-content/plugins/lyntouch-modules/src/Blocks/Image/index.js */"./src/Blocks/Image/index.js");
 
 
 /***/ })
