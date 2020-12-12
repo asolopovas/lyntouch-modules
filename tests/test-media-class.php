@@ -6,7 +6,7 @@ class TestMediaClass extends WP_UnitTestCase
 {
 
     protected $media;
-    protected $testMedia = "https://alisiagreen.test/wp-content/plugins/lyntouch-modules/tests/assets/3000x3000.jpg";
+    protected string $testMedia = "https://alisiagreen.test/wp-content/plugins/lyntouch-modules/tests/assets/3000x3000.jpg";
 
     public function setUp()
     {
@@ -55,14 +55,8 @@ class TestMediaClass extends WP_UnitTestCase
     public function thumb_method_returns_url_and_dir()
     {
         $media = new Media($this->testMedia, 400, 400);
-        $this->assertEquals(
-            $media->thumb('dir'),
-            wp_upload_dir()['basedir']."/thumbs/3000x3000-400x400.{$media->format}"
-        );
-        $this->assertEquals(
-            $media->thumb(),
-            wp_upload_dir()['baseurl']."/thumbs/3000x3000-400x400.{$media->format}"
-        );
+        $this->assertEquals($media->thumb('dir'), wp_upload_dir()['basedir']."/thumbs/3000x3000-400x400.{$media->format}");
+        $this->assertEquals($media->thumb(), wp_upload_dir()['baseurl']."/thumbs/3000x3000-400x400.{$media->format}");
     }
 
     /**
@@ -78,8 +72,8 @@ class TestMediaClass extends WP_UnitTestCase
     }
 
     /**
-    * @test
-    */
+     * @test
+     */
     public function fit_position_work_correctly()
     {
         $media = new Media($this->testMedia, 400, 200);
@@ -90,15 +84,28 @@ class TestMediaClass extends WP_UnitTestCase
     }
 
     /**
-    * @test
+     * @test
      */
-    public function media_url_does_not_exist_throws_exception():void
+    public function media_url_does_not_exist_throws_exception(): void
     {
         $url = str_replace('3000', '3001', $this->testMedia);
         $this->expectException(Exception::class);
         $this->expectExceptionMessage("Media \"{$url}\" does not exists on the server");
 
         (new Media($url, 200, 200))->isOriginal();
+    }
+
+    /**
+     * @test
+     */
+    public function works_with_url_and_paths()
+    {
+        $path = get_home_path()."/wp-content/plugins/lyntouch-modules/tests/assets/3000x3000.jpg";
+        $media = new Media($path, 123, 123);
+        $siteUrl = get_home_url();
+
+
+        $this->assertTrue(file_exists($media->thumb('dir')));
     }
 
 }

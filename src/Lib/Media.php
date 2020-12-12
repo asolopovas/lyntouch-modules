@@ -11,21 +11,25 @@ class Media
     private string $url;
     private int $width;
     private int $height;
-    private array $uploadDir;
     private string $srcPath;
     private \Intervention\Image\Image $processor;
 
     public string $format;
     public int $quality = 90;
 
-    public function __construct($url, $width, $height, $format = 'jpg')
+    public function __construct($src, $width, $height, $format = 'jpg')
     {
-        $this->url = $url;
-        $this->srcPath = get_home_path().ltrim(parse_url($url)['path'], '/');
-        $this->uploadDir = wp_upload_dir();
+        $this->url = filter_var($src, FILTER_VALIDATE_URL) ? $src : $this->urlFromPath($src);
+        $this->srcPath = get_home_path().ltrim(parse_url($src)['path'], '/');
         $this->width = $width;
         $this->height = $height;
         $this->format = $format;
+    }
+
+    public function urlFromPath($path)
+    {
+        $siteUrl = get_site_url();
+
     }
 
     /**
@@ -79,7 +83,7 @@ class Media
      */
     public function thumbsPath($value = 'dir'): string
     {
-        return $this->uploadDir['base'.$value].'/thumbs/';
+        return wp_upload_dir()['base'.$value].'/thumbs/';
     }
 
     /**
@@ -114,12 +118,12 @@ class Media
     }
 
     /**
-     * @param null $position
+     * @param string $position
      *
      * @return string
      * @throws Exception
      */
-    public function fit($position = null): string
+    public function fit($position = ''): string
     {
 
         if ($this->exists()) {
