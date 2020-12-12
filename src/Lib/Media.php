@@ -5,6 +5,7 @@ namespace Lyntouch\Lib;
 use Exception;
 use FastImageSize\FastImageSize;
 use Intervention\Image\ImageManagerStatic as Image;
+use function YoastSEO_Vendor\GuzzleHttp\Psr7\str;
 
 class Media
 {
@@ -19,8 +20,13 @@ class Media
 
     public function __construct($src, $width, $height, $format = 'jpg')
     {
-        $this->url = filter_var($src, FILTER_VALIDATE_URL) ? $src : $this->urlFromPath($src);
-        $this->srcPath = get_home_path().ltrim(parse_url($src)['path'], '/');
+        if (  filter_var($src, FILTER_VALIDATE_URL) ) {
+            $this->url = $src   ? $src : $this->urlFromPath($src);
+            $this->srcPath = get_home_path().ltrim(parse_url($src)['path'], '/');
+        } else {
+            $this->srcPath = $src;
+            $this->url = $this->urlFromPath($src);
+        }
         $this->width = $width;
         $this->height = $height;
         $this->format = $format;
@@ -28,9 +34,9 @@ class Media
 
     public function urlFromPath($path)
     {
-        $siteUrl = get_option('siteurl');
-        return '';
+        $siteUrl = get_site_url();
 
+        return  $siteUrl.str_replace(get_home_path(), '/', $path);
     }
 
     /**

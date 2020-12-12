@@ -100,11 +100,9 @@ class TestMediaClass extends WP_UnitTestCase
      */
     public function works_with_url_and_paths()
     {
-        $path = get_home_path()."/wp-content/plugins/lyntouch-modules/tests/assets/3000x3000.jpg";
+        $path = get_home_path()."wp-content/plugins/lyntouch-modules/tests/assets/3000x3000.jpg";
         $media = new Media($path, 123, 123);
-        $siteUrl = get_option('home');
-
-        dump($siteUrl);
+        $media->fit();
 
         $this->assertTrue(file_exists($media->thumb('dir')));
     }
