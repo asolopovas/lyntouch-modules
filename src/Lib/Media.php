@@ -1,6 +1,6 @@
 <?php
 
-namespace Lib;
+namespace Lyntouch\Lib;
 
 use Exception;
 use FastImageSize\FastImageSize;
@@ -21,7 +21,8 @@ class Media
     public function __construct($url, $width, $height, $format = 'jpg')
     {
         $this->url = $url;
-        $this->srcPath = wp_home_path().ltrim(parse_url($url)['path'], '/');
+        $this->srcPath = get_home_path().ltrim(parse_url($url)['path'], '/');
+        dd($this->srcPath);
         $this->uploadDir = wp_upload_dir();
         $this->width = $width;
         $this->height = $height;

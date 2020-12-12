@@ -20,8 +20,7 @@
     },
     "autoload": {
         "files": [
-            "src/helpers.php",
-            "src/index.php"
+            "src/helpers.php"
         ],
         "psr-4": {
             "Lyntouch\\": "src/"

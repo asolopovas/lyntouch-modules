@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Lyntouch Modules
  * Plugin URI: https://github.com/asolopovas/wp-media.git
- * Description: lyntouch-media helps to deal with wordpress media
+ * Description: Various blocks and functions for wordpress theme development
  * Author: Andrius Solopovas
  * Author URI: https://lyntouch.com/
  * Version: 1.0.0

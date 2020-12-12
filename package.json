@@ -4,7 +4,8 @@
     "private": true,
     "scripts": {
         "dev": "npm run development",
-        "phpunit": "phpunit",
+        "phpunit": "WP_TESTS_SKIP_INSTALL=1 phpunit",
+        "phpunit-watch": "WP_TESTS_SKIP_INSTALL=1 phpunit-watcher watch",
         "development": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "npm run development -- --watch",
         "watch-poll": "npm run watch -- --watch-poll",

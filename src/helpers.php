@@ -26,5 +26,3 @@ function lyntouch_root_url($value = ''): string
 {
     return $value ? plugins_url($value, dirname(__FILE__)) : plugin_dir_url(__DIR__);
 }
-
-
