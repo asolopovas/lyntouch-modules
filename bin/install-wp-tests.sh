@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 WP_CORE_DIR=$(realpath "../../../")
+HOST=$(php bin/args DB_HOST)
 
-DB_NAME=$(./args DB_NAME)
-DB_USER=$(./args DB_USER)
-DB_PASS=$(./args DB_PASSWORD)
-DB_HOST=${$(./args DB_HOST)-localhost}
+DB_NAME=$(php bin/args DB_NAME)
+DB_USER=$(php bin/args DB_USER)
+DB_PASS=$(php bin/args DB_PASSWORD)
+DB_HOST=${HOST-localhost}
 WP_VERSION=${5-latest}
 SKIP_DB_CREATE=${6-true}
 
@@ -146,6 +147,6 @@ install_db() {
 	mysqladmin create $DB_NAME --user="$DB_USER" --password="$DB_PASS"$EXTRA
 }
 
-install_wp
+#install_wp
 install_test_suite
 install_db
