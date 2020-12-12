@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
-WP_CORE_DIR=$(realpath "../../../")
-HOST=$(php bin/args DB_HOST)
 
-DB_NAME=$(php bin/args DB_NAME)
-DB_USER=$(php bin/args DB_USER)
-DB_PASS=$(php bin/args DB_PASSWORD)
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+WP_CORE_DIR=$(realpath "$DIR/../../../../")
+
+HOST=$(php "$DIR/args" DB_HOST)
+DB_NAME=$(php "$DIR/args" DB_NAME)
+DB_USER=$(php "$DIR/args" DB_USER)
+DB_PASS=$(php "$DIR/args" DB_PASSWORD)
 DB_HOST=${HOST-localhost}
 WP_VERSION=${5-latest}
 SKIP_DB_CREATE=${6-true}
