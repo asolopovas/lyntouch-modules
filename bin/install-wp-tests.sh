@@ -2,14 +2,15 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 WP_CORE_DIR=$(realpath "$DIR/../../../../")
+WP_TESTS_DOMAIN=$(basename $WP_CORE_DIR)
 
 HOST=$(php "$DIR/args" DB_HOST)
-DB_NAME=$(php "$DIR/args" DB_NAME)
-DB_USER=$(php "$DIR/args" DB_USER)
-DB_PASS=$(php "$DIR/args" DB_PASSWORD)
+DB_NAME=wp_test
+DB_USER=root
+DB_PASS=secret
 DB_HOST=${HOST-localhost}
-WP_VERSION=${5-latest}
-SKIP_DB_CREATE=${6-true}
+WP_VERSION=latest
+SKIP_DB_CREATE=true
 
 TMPDIR=${TMPDIR-/tmp}
 TMPDIR=$(echo $TMPDIR | sed -e "s/\/$//")
@@ -118,6 +119,7 @@ install_test_suite() {
 		sed $ioption "s/youremptytestdbnamehere/$DB_NAME/" "$WP_TESTS_DIR"/wp-tests-config.php
 		sed $ioption "s/yourusernamehere/$DB_USER/" "$WP_TESTS_DIR"/wp-tests-config.php
 		sed $ioption "s/yourpasswordhere/$DB_PASS/" "$WP_TESTS_DIR"/wp-tests-config.php
+		sed $ioption "s/example.org/$WP_TESTS_DOMAIN/" "$WP_TESTS_DIR"/wp-tests-config.php
 		sed $ioption "s|localhost|${DB_HOST}|" "$WP_TESTS_DIR"/wp-tests-config.php
 	fi
 

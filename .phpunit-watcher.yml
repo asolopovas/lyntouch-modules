@@ -6,4 +6,4 @@ watch:
         - src
 
 phpunit:
-    binaryPath: /home/andrius/.config/composer/vendor/bin/phpunit
+    binaryPath: vendor/bin/phpunit

@@ -28,7 +28,8 @@ class Media
 
     public function urlFromPath($path)
     {
-        $siteUrl = get_site_url();
+        $siteUrl = get_option('siteurl');
+        return '';
 
     }
 
