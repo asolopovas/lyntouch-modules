@@ -22,7 +22,9 @@
     },
     "autoload": {
         "files": [
-            "src/helpers.php"
+            "src/helpers.php",
+            "src/cleanup.php",
+            "src/filters-actions.php"
         ],
         "psr-4": {
             "Lyntouch\\": "src/"

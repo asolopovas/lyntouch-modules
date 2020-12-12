@@ -19,10 +19,11 @@ class Media
     public int $quality = 90;
 
     public function __construct($src, $width, $height, $format = 'jpg')
+
     {
         if (  filter_var($src, FILTER_VALIDATE_URL) ) {
             $this->url = $src   ? $src : $this->urlFromPath($src);
-            $this->srcPath = get_home_path().ltrim(parse_url($src)['path'], '/');
+            $this->srcPath = ABSPATH.ltrim(parse_url($src)['path'], '/');
         } else {
             $this->srcPath = $src;
             $this->url = $this->urlFromPath($src);
@@ -36,7 +37,7 @@ class Media
     {
         $siteUrl = get_site_url();
 
-        return  $siteUrl.str_replace(get_home_path(), '/', $path);
+        return  $siteUrl.str_replace(ABSPATH, '/', $path);
     }
 
     /**
