@@ -1,16 +1,12 @@
 #!/usr/bin/env bash
 WP_CORE_DIR=$(realpath "../../../")
-if [ $# -lt 3 ]; then
-	echo "usage: $0 <db-name> <db-user> <db-pass> [db-host] [wp-version] [skip-database-creation]"
-	exit 1
-fi
 
-DB_NAME=$1
-DB_USER=$2
-DB_PASS=$3
-DB_HOST=${4-localhost}
+DB_NAME=$(./args DB_NAME)
+DB_USER=$(./args DB_USER)
+DB_PASS=$(./args DB_PASSWORD)
+DB_HOST=${$(./args DB_HOST)-localhost}
 WP_VERSION=${5-latest}
-SKIP_DB_CREATE=${6-false}
+SKIP_DB_CREATE=${6-true}
 
 TMPDIR=${TMPDIR-/tmp}
 TMPDIR=$(echo $TMPDIR | sed -e "s/\/$//")

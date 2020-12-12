@@ -1,0 +1,9 @@
+hideManual: true
+watch:
+    ignoreDotFiles: true
+    directories:
+        - tests
+        - src
+
+phpunit:
+    binaryPath: /home/andrius/.config/composer/vendor/bin/phpunit

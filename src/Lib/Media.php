@@ -22,7 +22,6 @@ class Media
     {
         $this->url = $url;
         $this->srcPath = get_home_path().ltrim(parse_url($url)['path'], '/');
-        dd($this->srcPath);
         $this->uploadDir = wp_upload_dir();
         $this->width = $width;
         $this->height = $height;

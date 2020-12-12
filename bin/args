@@ -1,0 +1,7 @@
+#!/usr/bin/env php
+<?php
+
+include __DIR__.'/../../../../wp-config.php';
+$const = get_defined_constants(true);
+
+echo $const['user'][$argv[1]];
