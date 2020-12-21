@@ -1,0 +1,32 @@
+<script>
+    window.swiperSettings = {
+        el: '.{{ block.id }}',
+        breakpoint: {{ fields.breakpoint  ? fields.breakpoint : 768 }},
+        active: false,
+        config: {
+            loop: true,
+            // centeredSlides: true,
+            slidesPerView: 'auto',
+            spaceBetween: 1,
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-right',
+                prevEl: '.swiper-left',
+            },
+        },
+    }
+
+    window.swiperBlock = new Swiper(window.swiperSettings.el, window.swiperSettings.config)
+    window.swiperSettings.active = true
+
+    addEventListener('resize', debounce(() => {
+        if (window.innerWidth <= window.swiperSettings.breakpoint && window.swiperSettings.active === true) {
+            window.swiperBlock.destroy(true, true)
+            window.swiperSettings.active = false
+        }
+        if (window.innerWidth > window.swiperSettings.breakpoint && window.swiperSettings.active === false) {
+            window.swiperBlock = new Swiper(window.swiperSettings.el, window.swiperSettings.config)
+            window.swiperSettings.active = true
+        }
+    }, 300))
+</script>

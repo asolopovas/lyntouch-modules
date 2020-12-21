@@ -12573,9 +12573,9 @@ whenDomReady.resume = function (doc) {
 
 /***/ }),
 
-/***/ "./src/Blocks/Slider/js/swiper.js":
+/***/ "./src/Blocks/Swiper/js/swiper.js":
 /*!****************************************!*\
-  !*** ./src/Blocks/Slider/js/swiper.js ***!
+  !*** ./src/Blocks/Swiper/js/swiper.js ***!
   \****************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -12597,9 +12597,9 @@ global.whenDomReady = when_dom_ready__WEBPACK_IMPORTED_MODULE_2__["default"];
 
 /***/ }),
 
-/***/ "./src/Blocks/Slider/sass/swiper.scss":
+/***/ "./src/Blocks/Swiper/sass/swiper.scss":
 /*!********************************************!*\
-  !*** ./src/Blocks/Slider/sass/swiper.scss ***!
+  !*** ./src/Blocks/Swiper/sass/swiper.scss ***!
   \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -12608,17 +12608,29 @@ global.whenDomReady = when_dom_ready__WEBPACK_IMPORTED_MODULE_2__["default"];
 
 /***/ }),
 
+/***/ "./src/assets/admin/global.scss":
+/*!**************************************!*\
+  !*** ./src/assets/admin/global.scss ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!************************************************************************************************************************************************!*\
-  !*** multi ./src/Blocks/Slider/js/swiper.js ./src/Blocks/Image/style.scss ./src/Blocks/Image/editor.scss ./src/Blocks/Slider/sass/swiper.scss ***!
-  \************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** multi ./src/Blocks/Swiper/js/swiper.js ./src/Blocks/Image/style.scss ./src/assets/admin/global.scss ./src/Blocks/Image/editor.scss ./src/Blocks/Swiper/sass/swiper.scss ***!
+  \*******************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/andrius/www/alisiagreen.test/wp-content/plugins/lyntouch-modules/src/Blocks/Slider/js/swiper.js */"./src/Blocks/Slider/js/swiper.js");
+__webpack_require__(/*! /home/andrius/www/alisiagreen.test/wp-content/plugins/lyntouch-modules/src/Blocks/Swiper/js/swiper.js */"./src/Blocks/Swiper/js/swiper.js");
 __webpack_require__(/*! /home/andrius/www/alisiagreen.test/wp-content/plugins/lyntouch-modules/src/Blocks/Image/style.scss */"./src/Blocks/Image/style.scss");
+__webpack_require__(/*! /home/andrius/www/alisiagreen.test/wp-content/plugins/lyntouch-modules/src/assets/admin/global.scss */"./src/assets/admin/global.scss");
 __webpack_require__(/*! /home/andrius/www/alisiagreen.test/wp-content/plugins/lyntouch-modules/src/Blocks/Image/editor.scss */"./src/Blocks/Image/editor.scss");
-module.exports = __webpack_require__(/*! /home/andrius/www/alisiagreen.test/wp-content/plugins/lyntouch-modules/src/Blocks/Slider/sass/swiper.scss */"./src/Blocks/Slider/sass/swiper.scss");
+module.exports = __webpack_require__(/*! /home/andrius/www/alisiagreen.test/wp-content/plugins/lyntouch-modules/src/Blocks/Swiper/sass/swiper.scss */"./src/Blocks/Swiper/sass/swiper.scss");
 
 
 /***/ })

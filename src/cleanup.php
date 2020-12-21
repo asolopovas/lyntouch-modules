@@ -1,12 +1,26 @@
 <?php
-
 // ---------------------------------------------
 // Add custom posts into RSS Feed
 // ---------------------------------------------
-// Display the links to the extra feeds such as category feeds
-remove_action('wp_head', 'feed_links_extra', 3);
-// Display the links to the general feeds: Post and Comment Feed
-remove_action('wp_head', 'feed_links', 2);
+add_action( 'wp_head', 'wpse33072_wp_head', 1 );
+function wpse33072_wp_head()
+{
+    // Display the links to the extra feeds such as category feeds
+    remove_action('wp_head', 'feed_links_extra', 3);
+    // Display the links to the general feeds: Post and Comment Feed
+    remove_action('wp_head', 'feed_links', 2);
+}
+
+// * Remove the `feed` endpoint
+add_action('init', 'wpse33072_kill_feed_endpoint', 99);
+function wpse33072_kill_feed_endpoint()
+{
+    // This is extremely brittle.
+    // $wp_rewrite->feeds is public right now, but later versions of WP
+    // might change that
+    global $wp_rewrite;
+    $wp_rewrite->feeds = [];
+}
 
 // ---------------------------------------------
 // Add Excerpt Field to Pages

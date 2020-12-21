@@ -195,18 +195,18 @@ function clear_cache_fn()
 
 function clear_cache_on_post_save($post_id)
 {
-    $permalink = get_permalink($post_id);
-    $_GET['path'] = parse_url($permalink)['path'];
-    $loader = di(Loader::class);
-    $loader->clear_cache_timber();
-    $loader->clear_cache_twig();
-    clear_cache_fn();
-    try {
-        $client = new Client();
-        $client->request('GET', $permalink, ['verify' => false]);
-    } catch (Exception $exception) {
-        return;
-    }
+    //    $permalink = get_permalink($post_id);
+    //    $_GET['path'] = parse_url($permalink)['path'];
+    //    $loader = di(Loader::class);
+    //    $loader->clear_cache_timber();
+    //    $loader->clear_cache_twig();
+    //    clear_cache_fn();
+    //    try {
+    //        $client = new Client();
+    //        $client->request('GET', $permalink, ['verify' => false]);
+    //    } catch (Exception $exception) {
+    //        return;
+    //    }
 }
 
 add_action('save_post', 'clear_cache_on_post_save');

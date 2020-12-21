@@ -14,8 +14,11 @@
 
 use Lyntouch\Blocks\Image\ImageBlock;
 use Lyntouch\Bootstrap\App;
-use Lyntouch\Blocks\Slider\SliderBlock;
+use Lyntouch\Blocks\Swiper\SwiperBlock;
 use Lyntouch\Twig\TwigHelper;
+
+require_once __DIR__.'/src/cleanup.php';
+require_once __DIR__.'/src/filters-actions.php';
 
 if (file_exists(__DIR__.'/vendor/autoload.php')) {
     require_once __DIR__.'/vendor/autoload.php';
@@ -26,7 +29,7 @@ add_action('plugins_loaded', [new App, 'init']);
 # Load Image Block
 add_action('init', [new ImageBlock, 'setup']);
 
-(new SliderBlock())->setup();
+(new SwiperBlock())->setup();
 
 add_filter('timber/twig', function($twig) {
     $twig_helper = new TwigHelper($twig);
@@ -35,3 +38,4 @@ add_filter('timber/twig', function($twig) {
 
     return $twig;
 });
+add_action('admin_enqueue_scripts', fn() => wp_enqueue_style('lyntouch-theme', lyntouch_root_url('/dist/css/global.css'), [], null));

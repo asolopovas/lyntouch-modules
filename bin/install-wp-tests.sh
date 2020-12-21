@@ -11,6 +11,7 @@ DB_PASS=secret
 DB_HOST=${HOST-localhost}
 WP_VERSION=latest
 SKIP_DB_CREATE=true
+echo "HOST: $HOST; DB_HOST: $DB_HOST; DB_NAME: $DB_NAME; DB_USER: $DB_USER; DB_PASS: $DB_PASS;"
 
 TMPDIR=${TMPDIR-/tmp}
 TMPDIR=$(echo $TMPDIR | sed -e "s/\/$//")
