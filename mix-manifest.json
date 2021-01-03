@@ -1,8 +1,8 @@
 {
     "/dist/js/index.js": "/dist/js/index.js",
-    "/dist/css/editor.css": "/dist/css/editor.css",
     "/dist/js/swiper.js": "/dist/js/swiper.js",
-    "/dist/css/style.css": "/dist/css/style.css",
+    "/dist/css/swiper.css": "/dist/css/swiper.css",
+    "/dist/css/editor.css": "/dist/css/editor.css",
     "/dist/css/global.css": "/dist/css/global.css",
-    "/dist/css/swiper.css": "/dist/css/swiper.css"
+    "/dist/css/style.css": "/dist/css/style.css"
 }

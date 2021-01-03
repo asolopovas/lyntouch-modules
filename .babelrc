@@ -1,0 +1,15 @@
+{
+    "presets": [
+        [
+            "@babel/preset-react",
+            {
+                "runtime": "automatic"
+            }
+        ]
+    ],
+    "plugins": [
+        "lodash",
+        "@babel/plugin-transform-react-jsx"
+    ],
+    "sourceMaps": true
+}
