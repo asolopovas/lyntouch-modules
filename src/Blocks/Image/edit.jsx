@@ -1,3 +1,4 @@
+import './editor.scss'
 const {
     Button,
 } = wp.components
@@ -14,7 +15,6 @@ const {
     TextControl,
 } = wp.components
 
-import './editor.scss'
 
 export default (props) => {
     const {

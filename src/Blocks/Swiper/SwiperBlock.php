@@ -56,6 +56,5 @@ class SwiperBlock implements BlockInterface
     public function setup(): void
     {
         add_action('acf/init', [$this, 'registerSwiperBlock']);
-        //        add_action('acf/init', [$this, 'registerAcfBlockFields']);
     }
 }

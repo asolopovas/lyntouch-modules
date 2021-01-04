@@ -1,1 +1,158 @@
-(()=>{"use strict";var e={266:()=>{function e(e,t,a){return{width:t,height:a,src:"".concat(lyntouchGlobal.siteUrl,"/media?image=").concat(e,"&args[w]=").concat(t,"&args[h]=").concat(a,"&args[fit]=crop"),srcSet:"".concat(lyntouchGlobal.siteUrl,"/media?image=").concat(e,"&args[w]=").concat(t,"&args[h]=").concat(a,"&args[fit]=crop, ").concat(lyntouchGlobal.siteUrl,"/media?image=").concat(e,"&args[w]=").concat(2*t,"&args[h]=").concat(2*a,"&args[fit]=crop 2x")}}var t=wp.components.Button,a=wp.blockEditor,n=a.InspectorControls,l=a.MediaUploadCheck,c=a.MediaUpload,i=wp.components,r=i.PanelBody,o=i.TextControl;var s=wp.i18n.__;(0,wp.blocks.registerBlockType)("lyntouch/wp-media",{title:s("Lyntouch - Image Block"),icon:"shield",category:"common",attributes:{image:{type:"object",selector:"responsive-image"},imageParams:{type:"object",default:{width:null,height:null,mediaWidth:null}},variations:{type:"string",default:"[]"}},keywords:[s("lyntouch-blocks")],edit:function(e){var a=e.attributes,i=e.className,s=e.setAttributes,u=a.image,m=a.variations;var h=JSON.parse(m);return[React.createElement(n,null,React.createElement(r,{title:"Image Size Variations"},h.map((function(e,t){return React.createElement("div",{className:"flex flex-wrap border"},React.createElement(o,{className:"w-1/2",label:"Width",type:"number",value:e.width,onChange:function(e){h[t].width=e,s({variations:JSON.stringify(h)})},min:150,max:3e3}),React.createElement(o,{label:"Height",type:"number",className:"w-1/2",value:e.height,onChange:function(e){h[t].height=e,s({variations:JSON.stringify(h)})},min:150,max:2e3}),React.createElement(o,{label:"Media",type:"string",className:"w-full",value:e.media,onChange:function(e){h[t].media=e,s({variations:JSON.stringify(h)})}}))})),React.createElement(t,{onClick:function(){var e=JSON.parse(m),t={width:null,height:null,media:null};console.log(e),e.includes(t)||(e.push(t),s({variations:JSON.stringify(e)}))},className:"button"},"Add Variation"))),React.createElement("div",{className:i},React.createElement(l,null,React.createElement(c,{className:"js-book-details-image wp-admin-book-details-image",allowedTypes:["image"],multiple:!1,value:u?u.id:"",onSelect:function(e){return s({image:e})},render:function(e){var a=e.open;return u?React.createElement("figure",null,React.createElement("img",{src:u.url,width:u.width/2}),React.createElement(t,{onClick:function(){return s({image:""})},className:"button is-small"},"Remove")):React.createElement(t,{onClick:a,className:"button"},"Upload Image")}})))]},save:function(t){var a=t.attributes,n=a.image,l=a.variations,c=JSON.parse(l),i=n.sizes.full.url.replace("".concat(lyntouchGlobal.siteUrl,"/wp-content/uploads/"),""),r=c.length>0?e(i,c[0].width,c[0].height):n.sizes.full.url;return React.createElement("picture",null,c.map((function(t){var a=e(i,t.width,t.height);return React.createElement("source",{srcSet:a.srcSet,media:"(".concat(t.media,")")})})),React.createElement("img",{src:r.src,alt:n.alt?n.alt:n.title,width:r.width,height:r.height}))}})},889:()=>{},596:()=>{},707:()=>{},46:()=>{}},t={};function a(n){if(t[n])return t[n].exports;var l=t[n]={exports:{}};return e[n](l,l.exports,a),l.exports}a.m=e,a.x=e=>{},a.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),(()=>{var e={881:0},t=[[266],[889],[596],[707],[46]],n=e=>{},l=(l,c)=>{for(var i,r,[o,s,u,m]=c,h=0,g=[];h<o.length;h++)r=o[h],a.o(e,r)&&e[r]&&g.push(e[r][0]),e[r]=0;for(i in s)a.o(s,i)&&(a.m[i]=s[i]);for(u&&u(a),l&&l(c);g.length;)g.shift()();return m&&t.push.apply(t,m),n()},c=self.webpackChunklyntouch_blocks_cgb_guten_block=self.webpackChunklyntouch_blocks_cgb_guten_block||[];function i(){for(var n,l=0;l<t.length;l++){for(var c=t[l],i=!0,r=1;r<c.length;r++){var o=c[r];0!==e[o]&&(i=!1)}i&&(t.splice(l--,1),n=a(a.s=c[0]))}return 0===t.length&&(a.x(),a.x=e=>{}),n}c.forEach(l.bind(null,0)),c.push=l.bind(null,c.push.bind(c));var r=a.x;a.x=()=>(a.x=r||(e=>{}),(n=i)())})(),a.x()})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/Blocks/Swiper/sass/swiper.scss":
+/*!********************************************!*\
+  !*** ./src/Blocks/Swiper/sass/swiper.scss ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		if(__webpack_module_cache__[moduleId]) {
+/******/ 			return __webpack_module_cache__[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/******/ 	// the startup function
+/******/ 	// It's empty as some runtime module handles the default behavior
+/******/ 	__webpack_require__.x = x => {}
+/************************************************************************/
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// Promise = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"/dist/js/index": 0
+/******/ 		};
+/******/ 		
+/******/ 		var deferredModules = [
+/******/ 			["./src/Blocks/Swiper/sass/swiper.scss"]
+/******/ 		];
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		var checkDeferredModules = x => {};
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime, executeModules] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0, resolves = [];
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					resolves.push(installedChunks[chunkId][0]);
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			for(moduleId in moreModules) {
+/******/ 				if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 					__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 				}
+/******/ 			}
+/******/ 			if(runtime) runtime(__webpack_require__);
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			while(resolves.length) {
+/******/ 				resolves.shift()();
+/******/ 			}
+/******/ 		
+/******/ 			// add entry modules from loaded chunk to deferred list
+/******/ 			if(executeModules) deferredModules.push.apply(deferredModules, executeModules);
+/******/ 		
+/******/ 			// run deferred modules when all chunks ready
+/******/ 			return checkDeferredModules();
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunklyntouch_blocks_cgb_guten_block"] = self["webpackChunklyntouch_blocks_cgb_guten_block"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 		
+/******/ 		function checkDeferredModulesImpl() {
+/******/ 			var result;
+/******/ 			for(var i = 0; i < deferredModules.length; i++) {
+/******/ 				var deferredModule = deferredModules[i];
+/******/ 				var fulfilled = true;
+/******/ 				for(var j = 1; j < deferredModule.length; j++) {
+/******/ 					var depId = deferredModule[j];
+/******/ 					if(installedChunks[depId] !== 0) fulfilled = false;
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferredModules.splice(i--, 1);
+/******/ 					result = __webpack_require__(__webpack_require__.s = deferredModule[0]);
+/******/ 				}
+/******/ 			}
+/******/ 			if(deferredModules.length === 0) {
+/******/ 				__webpack_require__.x();
+/******/ 				__webpack_require__.x = x => {};
+/******/ 			}
+/******/ 			return result;
+/******/ 		}
+/******/ 		var startup = __webpack_require__.x;
+/******/ 		__webpack_require__.x = () => {
+/******/ 			// reset startup function so it can be called again when more startup code is added
+/******/ 			__webpack_require__.x = startup || (x => {});
+/******/ 			return (checkDeferredModules = checkDeferredModulesImpl)();
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	// run startup
+/******/ 	return __webpack_require__.x();
+/******/ })()
+;

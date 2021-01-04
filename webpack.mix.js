@@ -1,9 +1,7 @@
 let mix = require('laravel-mix');
 
 
-mix.js('src/Blocks/Image/index.js', 'dist/js').react()
-   .sass('src/Blocks/Image/style.scss', 'dist/css')
-   .sass('src/assets/admin/global.scss', 'dist/css')
-   .sass('src/Blocks/Image/editor.scss', 'dist/css')
+mix.js('src/Blocks/Image/image-block.js', 'dist/js').react()
    .js('src/Blocks/Swiper/js/swiper.js', 'dist/js')
+   .js('src/Gutenberg/hooks.js', 'dist/js')
    .sass('src/Blocks/Swiper/sass/swiper.scss', 'dist/css')

@@ -2,7 +2,7 @@
 // ---------------------------------------------
 // Add custom posts into RSS Feed
 // ---------------------------------------------
-add_action( 'wp_head', 'wpse33072_wp_head', 1 );
+add_action('wp_head', 'wpse33072_wp_head', 1);
 function wpse33072_wp_head()
 {
     // Display the links to the extra feeds such as category feeds
@@ -51,9 +51,10 @@ function deregister_wp_embed_scripts()
 // ---------------------------------------------
 // Remove Wordpress Favicon
 // ---------------------------------------------
-add_filter( 'get_site_icon_url', '__return_false' );
-add_action( 'do_faviconico', 'wp_favicon_remover');
-function wp_favicon_remover() {
+add_filter('get_site_icon_url', '__return_false');
+add_action('do_faviconico', 'wp_favicon_remover');
+function wp_favicon_remover()
+{
     exit;
 }
 

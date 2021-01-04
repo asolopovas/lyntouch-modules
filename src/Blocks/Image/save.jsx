@@ -1,3 +1,4 @@
+import "./style.scss"
 function resizeImg(path, width, height) {
     return {
         width,

@@ -18,7 +18,7 @@ class ImageBlock implements BlockInterface
         );
         wp_register_script(
             'lyntouch-image-block-js',
-            lyntouch_root_url('/dist/js/index.js'),
+            lyntouch_root_url('/dist/js/image-block.js'),
             [
                 'wp-blocks',
                 'wp-i18n',

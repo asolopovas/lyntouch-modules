@@ -12,6 +12,7 @@
  * @package CGB
  */
 
+use Lyntouch\Gutenberg\Hooks;
 use Lyntouch\Blocks\Image\ImageBlock;
 use Lyntouch\Bootstrap\App;
 use Lyntouch\Blocks\Swiper\SwiperBlock;
@@ -28,6 +29,8 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
 add_action('plugins_loaded', [new App, 'init']);
 # Load Image Block
 add_action('init', [new ImageBlock, 'setup']);
+# Load Hooks
+add_action('init', [new Hooks, 'setup']);
 
 (new SwiperBlock())->setup();
 
@@ -38,4 +41,3 @@ add_filter('timber/twig', function($twig) {
 
     return $twig;
 });
-add_action('admin_enqueue_scripts', fn() => wp_enqueue_style('lyntouch-theme', lyntouch_root_url('/dist/css/global.css'), [], null));
