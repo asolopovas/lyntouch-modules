@@ -16,7 +16,7 @@
                             <source
                                 media="{{ size.media }}"
                                 srcset="{% for i in size.dpr %}
-                                            {{ resize(slide.url, width*i,   height*i  ) }} {{ i }}X,
+                                            {{ resize(slide.url, width*i,   height*i  ) }}{% if not loop.first %} {{ i }}x{% endif %},
                                         {% endfor %}"
                             >
                     {% endfor %}
