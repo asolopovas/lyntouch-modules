@@ -1,58 +1,39 @@
-<div class="{{ block.id }} px-6 lg:px-0 relative" style="overflow: hidden; position: relative">
-    <div class="swiper-wrapper">
-        {% for slide in fields.slides %}
-            {% set portrait = slide.width < slide.height %}
-            {% set ratio = 2/3 %}
-            <div class="swiper-slide pb-8">
-                <picture>
-                    {% set width = 512 %}
-                    {% set height = portrait ? (width / ratio) | round : (width * ratio) | round %}
-                    <source
-                        media="(min-width: 2560px)"
-                        srcset="
-                            {{ resize(slide.url, width,   height  ) }},
-                            {{ resize(slide.url, width*2, height*2) }} 2x,
-                        "
-                    >
-                    {% set width = 339 %}
-                    {% set height = portrait ? (width / ratio) | round : (width * ratio) | round %}
-                    <source
-                        media="(min-width: 1024px)"
-                        srcset="
-                            {{ resize(slide.url, width,   height  ) }},
-                            {{ resize(slide.url, width*2, height*2) }} 2x,
-                        "
-                    >
-                    {% set width = 700 %}
-                    {% set height = portrait ? (width / ratio) | round : (width * ratio) | round %}
-                    <source
-                        media="(min-width: 768px)"
-                        srcset="
-                            {{ resize(slide.url, width*2, height*2) }} 2x,
-                        "
-                    >
-                    {% set width = 350 %}
-                    {% set height = portrait ? (width / ratio) | round : (width * ratio) | round %}
-                    <source
-                        media="(min-width: 375px)"
-                        srcset="
-                            {{ resize(slide.url, width,   height) }},
-                            {{ resize(slide.url, width*2, height*2) }} 2x,
-                            {{ resize(slide.url, width*3, height*3) }} 3x,
-                        "
-                    >
-                    <img src="{{ placeholder(width, height) }}"
-                         data-src="{{ resize(slide.url, width, height) }}"
-                         class="w-full lazyload translate3d"
-                         width="{{ width }}"
-                         height="{{ height }}"
-                         alt="{{ alt }}"
-                    />
-                </picture>
-            </div>
-        {% endfor %}
+{% set typeClass = block.align == 'wide' ? 'mx-auto container px-8' : 'lg:px-0' %}
+<div class="wrap relative {{ typeClass }}">
+    <div class="{{ block.id }} overflow-hidden">
+        <div class="swiper-wrapper">
+            {% for slide in fields.slides %}
+                {% set portrait = slide.width < slide.height %}
+                {% set ratio = fields.ratio_w and fields.ratio_h
+                    ? fields.ratio_w/fields.ratio_h
+                    :  2/3
+                %}
+                <div class="swiper-slide flex justify-center pb-8 md:pb-0">
+                    <picture>
+                        {% for size in fields.sizes %}
+                        {% set width = size.width %}
+                        {% set height = portrait ? (width / ratio) | round : (width * ratio) | round %}
+                            <source
+                                media="{{ size.media }}"
+                                srcset="{% for i in size.dpr %}
+                                            {{ resize(slide.url, width*i,   height*i  ) }} {{ i }}X,
+                                        {% endfor %}"
+                            >
+                    {% endfor %}
+                        {% set width,height = 200,300 %}
+                        <img src="{{ placeholder(width, height) }}"
+                             data-src="{{ resize(slide.url, width, height) }}"
+                             class="w-full lazyload translate3d"
+                             width="{{ width }}"
+                             height="{{ height }}"
+                             alt="{{ alt }}"
+                        />
+                    </picture>
+                </div>
+            {% endfor %}
+        </div>
+        {% set width,height = '50px','50px' %}
+        {% include 'partials/button-arrow.twig' with {width, height, class: 'swiper-left border-0', direction: 'left'} %}
+        {% include 'partials/button-arrow.twig' with {width, height, class: 'swiper-right border-0', direction: 'right'} %}
     </div>
-    {% set width,height = '50px','50px' %}
-    {% include 'partials/button-arrow.twig' with {width, height, class: 'swiper-left border-0', direction: 'left'} %}
-    {% include 'partials/button-arrow.twig' with {width, height, class: 'swiper-right border-0', direction: 'right'} %}
 </div>
