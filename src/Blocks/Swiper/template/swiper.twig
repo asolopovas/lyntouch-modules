@@ -6,21 +6,23 @@
                 {% set portrait = slide.width < slide.height %}
                 {% set ratio = fields.ratio_w and fields.ratio_h
                     ? fields.ratio_w/fields.ratio_h
-                    :  2/3
-                %}
+                    :  2/3 %}
                 <div class="swiper-slide flex justify-center pb-8 md:pb-0">
                     <picture>
                         {% for size in fields.sizes %}
-                        {% set width = size.width %}
-                        {% set height = portrait ? (width / ratio) | round : (width * ratio) | round %}
+                            {% set width = size.width %}
+                            {% set height = portrait ? (width / ratio) | round : (width * ratio) | round %}
                             <source
                                 media="{{ size.media }}"
                                 srcset="{% for i in size.dpr %}
                                             {{ resize(slide.url, width*i,   height*i  ) }}{% if not loop.first %} {{ i }}x{% endif %},
                                         {% endfor %}"
                             >
-                    {% endfor %}
-                        {% set width,height = 200,300 %}
+                        {% endfor %}
+                        {% set lastSize = fields.sizes | last %}
+                        {% set width = lastSize.width ? lastSize.width : slide.width %}
+                        {% set height = portrait ? (width / ratio) | round : (width * ratio) | round %}
+
                         <img src="{{ placeholder(width, height) }}"
                              data-src="{{ resize(slide.url, width, height) }}"
                              class="w-full lazyload translate3d"

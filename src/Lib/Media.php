@@ -28,6 +28,9 @@ class Media
             $this->srcPath = $src;
             $this->url = $this->urlFromPath($src);
         }
+        if ( $width === null ) {
+            dd($src);
+        }
         $this->width = $width;
         $this->height = $height;
         $this->format = $format;
