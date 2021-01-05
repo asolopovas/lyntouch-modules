@@ -55,10 +55,6 @@
       scroll-snap-type: y mandatory;
 }
 
-.swiper-wrapper {
-  flex-direction: column;
-}
-
 .swiper-slide {
   display: flex;
   width: auto;
@@ -66,16 +62,7 @@
   background: transparent;
 }
 
-@media only screen and (min-width: 1024px) {
-  .swiper-wrapper {
-    flex-direction: row;
-  }
-
-  .swiper-slide {
-    margin-right: 1px;
-  }
-}
-.button-arrow {
+.swipe-arrows {
   cursor: pointer;
   z-index: 1;
   background: 0;
@@ -83,7 +70,7 @@
   top: 50%;
   transform: translateY(-50%);
 }
-.button-arrow:focus {
+.swipe-arrows:focus {
   outline: none;
 }
 

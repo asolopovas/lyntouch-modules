@@ -3,28 +3,26 @@
     <div class="{{ block.id }} overflow-hidden">
         <div class="swiper-wrapper">
             {% for slide in fields.slides %}
-                {% set portrait = slide.width < slide.height %}
-                {% set ratio = fields.ratio_w and fields.ratio_h
-                    ? fields.ratio_w/fields.ratio_h
-                    :  2/3 %}
+                {% set mainRatio = fields.ratio_w and fields.ratio_h ? fields.ratio_w / fields.ratio_h : 2 / 3 %}
                 <div class="swiper-slide flex justify-center pb-8 md:pb-0">
                     <picture>
                         {% for size in fields.sizes %}
+                            {% set ratio = size.ratio.w and size.ratio.h ? size.ratio.w / size.ratio.h  : mainRatio %}
                             {% set width = size.width %}
-                            {% set height = portrait ? (width / ratio) | round : (width * ratio) | round %}
+                            {% set height = width | heightByRatio(ratio) %}
                             <source
-                                media="{{ size.media }}"
-                                srcset="{% for i in size.dpr %}
-                                            {{ resize(slide.url, width*i,   height*i  ) }}{% if not loop.first %} {{ i }}x{% endif %},
-                                        {% endfor %}"
+                                media="({{ size.media }})"
+                                data-srcset="{{ srcsetGen( slide.url, width, height, size.dpr ) }}"
                             >
                         {% endfor %}
-                        {% set lastSize = fields.sizes | last %}
-                        {% set width = lastSize.width ? lastSize.width : slide.width %}
-                        {% set height = portrait ? (width / ratio) | round : (width * ratio) | round %}
+                        {% set width = fields.width ? fields.width : slide.width %}
+                        {% set height = width | heightByRatio(mainRatio) %}
 
                         <img src="{{ placeholder(width, height) }}"
                              data-src="{{ resize(slide.url, width, height) }}"
+                            {% if fields.dpr %}
+                                data-srcset=" {{ srcsetGen(slide.url, width, height, fields.dpr) }}"
+                            {% endif %}
                              class="w-full lazyload translate3d"
                              width="{{ width }}"
                              height="{{ height }}"
@@ -35,7 +33,7 @@
             {% endfor %}
         </div>
         {% set width,height = '50px','50px' %}
-        {% include 'partials/button-arrow.twig' with {width, height, class: 'swiper-left border-0', direction: 'left'} %}
-        {% include 'partials/button-arrow.twig' with {width, height, class: 'swiper-right border-0', direction: 'right'} %}
+        {% include 'partials/button-arrow.twig' with {width, height, class: 'swipe-arrows swiper-left border-0', direction: 'left'} %}
+        {% include 'partials/button-arrow.twig' with {width, height, class: 'swipe-arrows swiper-right border-0', direction: 'right'} %}
     </div>
 </div>

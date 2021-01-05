@@ -17,6 +17,17 @@ if (!function_exists('di')) {
     }
 }
 
+/**
+ * @param int       $width
+ * @param float|int $ratio
+ *
+ * @return int
+ */
+function heightByRatio(int $width, float $ratio = 2 / 3): int
+{
+    return (int) round($width / $ratio);
+}
+
 function lyntouch_root_dir($value = ''): string
 {
     return $value ? plugin_dir_path(__DIR__).$value : plugin_dir_path(__DIR__);

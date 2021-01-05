@@ -1,38 +1,42 @@
 <script>
-    window.swiperSettings = {
-        el: '.{{ block.id }}',
-        {#breakpoint: {{ fields.breakpoint  ? fields.breakpoint : 768 }},#}
-        active: false,
-        config: {
-            loop: true,
-            slidesPerView: {{ fields.slides_per_view }},
-            spaceBetween: 1,
-            // Navigation arrows
-            navigation: {
-                nextEl: '.swiper-right',
-                prevEl: '.swiper-left',
+    (function() {
+        {% set breakpoint = fields.start_breakpoint  ? fields.start_breakpoint : false %}
+        let swiperBlock = {}
+        let swiperSettings = {
+            el: '.{{ block.id }}',
+            active: false,
+            config: {
+                loop: true,
+                slidesPerView: {{ fields.slides_per_view }},
+                spaceBetween: 1,
+                // Navigation arrows
+                navigation: {
+                    nextEl: '.swiper-right',
+                    prevEl: '.swiper-left',
+                },
             },
-        },
-    }
+        }
 
-    {% if fields.start_breakpoint %}
-        if ( {{ fields.start_breakpoint }} <= window.innerWidth  ) {
-            window.swiperBlock = new Swiper(window.swiperSettings.el, window.swiperSettings.config)
-            window.swiperSettings.active = true
+        {% if breakpoint %}
+        swiperSettings.breakpoint = {{ breakpoint }}
+        if (window.innerWidth >= swiperSettings.breakpoint) {
+            swiperBlock = new Swiper(swiperSettings.el, swiperSettings.config)
+            swiperSettings.active = true
         }
-    {% else %}
-        window.swiperBlock = new Swiper(window.swiperSettings.el, window.swiperSettings.config)
-        window.swiperSettings.active = true
-    {% endif %}
+        addEventListener('resize', debounce(() => {
+            if (window.innerWidth <= swiperSettings.breakpoint && swiperSettings.active === true) {
+                swiperBlock.destroy(true, true)
+                swiperSettings.active = false
+            }
+            if (window.innerWidth > swiperSettings.breakpoint && swiperSettings.active === false) {
+                swiperBlock = new Swiper(swiperSettings.el, swiperSettings.config)
+                swiperSettings.active = true
+            }
+        }, 300))
+        {% else %}
+        swiperBlock = new Swiper(swiperSettings.el, swiperSettings.config)
+        swiperSettings.active = true
+        {% endif %}
 
-    addEventListener('resize', debounce(() => {
-        if (window.innerWidth <= window.swiperSettings.breakpoint && window.swiperSettings.active === true) {
-            window.swiperBlock.destroy(true, true)
-            window.swiperSettings.active = false
-        }
-        if (window.innerWidth > window.swiperSettings.breakpoint && window.swiperSettings.active === false) {
-            window.swiperBlock = new Swiper(window.swiperSettings.el, window.swiperSettings.config)
-            window.swiperSettings.active = true
-        }
-    }, 300))
+    })()
 </script>

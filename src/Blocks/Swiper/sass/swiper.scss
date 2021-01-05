@@ -7,9 +7,9 @@ $colors: ("white": #ffffff, "black": #000000) !default;
 @import "./scss/functions";
 @import "./components/core/core";
 
-.swiper-wrapper {
-    flex-direction: column;
-}
+//.swiper-wrapper {
+//    flex-direction: column;
+//}
 
 .swiper-slide {
     display: flex;
@@ -18,17 +18,16 @@ $colors: ("white": #ffffff, "black": #000000) !default;
     background: transparent;
 }
 
+//@media only screen and (min-width: 1024px) {
+//    .swiper-wrapper {
+//        flex-direction: row;
+//    }
+//    .swiper-slide {
+//        margin-right: 1px;
+//    }
+//}
 
-@media only screen and (min-width: 1024px) {
-    .swiper-wrapper {
-        flex-direction: row;
-    }
-    .swiper-slide {
-        margin-right: 1px;
-    }
-}
-
-.button-arrow {
+.swipe-arrows {
     &:focus {
         outline: none;
     }
