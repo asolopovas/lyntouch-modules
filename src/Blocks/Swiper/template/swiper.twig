@@ -12,7 +12,7 @@
                             {% set height = width | heightByRatio(ratio) %}
                             <source
                                 media="({{ size.media }})"
-                                data-srcset="{{ srcsetGen( slide.url, width, height, size.dpr ) }}"
+                                data-srcset="{{ srcset( slide.url, width, height, size.dpr ) }}"
                             >
                         {% endfor %}
                         {% set width = fields.width ? fields.width : slide.width %}
@@ -21,7 +21,7 @@
                         <img src="{{ placeholder(width, height) }}"
                              data-src="{{ resize(slide.url, width, height) }}"
                             {% if fields.dpr %}
-                                data-srcset=" {{ srcsetGen(slide.url, width, height, fields.dpr) }}"
+                                data-srcset=" {{ srcset(slide.url, width, height, fields.dpr) }}"
                             {% endif %}
                              class="w-full lazyload translate3d"
                              width="{{ width }}"
