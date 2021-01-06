@@ -28,7 +28,9 @@ class SwiperBlock implements BlockInterface
         // Store $is_preview value.
         $context['is_preview'] = $is_preview;
         // Render the block.
-        $context['stylesPath']  = __DIR__.'/template/styles.twig';
+        $context['stylesPath'] = __DIR__.'/template/styles.twig';
+
+        add_action('wp_print_footer_scripts', fn() => Timber::render(__DIR__."/template/settings", $context));
 
         Timber::render(__DIR__.'/template/swiper.twig', $context);
     }
