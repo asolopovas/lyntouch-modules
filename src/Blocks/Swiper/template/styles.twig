@@ -1,16 +1,17 @@
-<style scoped>
-    .swiper-wrapper {
-        flex-direction: column;
-    }
-
-    @media only screen and (min-width: 1024px) {
+{% if  fields.start_breakpoint  %}
+    <style scoped>
         .swiper-wrapper {
-            flex-direction: row;
+            flex-direction: column;
         }
 
-        .swiper-slide {
-            margin-right: 1px;
-        }
-    }
-</style>
+        @media only screen and (min-width: {{ fields.start_breakpoint }}px) {
+            .swiper-wrapper {
+                flex-direction: row;
+            }
 
+            .swiper-slide {
+                margin-right: 1px;
+            }
+        }
+    </style>
+{% endif %}

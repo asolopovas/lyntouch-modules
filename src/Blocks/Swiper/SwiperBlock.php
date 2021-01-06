@@ -15,12 +15,6 @@ class SwiperBlock implements BlockInterface
         wp_enqueue_style('swiper-core', lyntouch_root_url('/dist/css/swiper.css'), [], null);
     }
 
-    public function swiperInit($context)
-    {
-        Timber::render(__DIR__.'/template/swiper-settings.twig', $context);
-    }
-
-
     public function renderSwiperBlock($block, $content = '', $is_preview = false)
     {
 
@@ -36,7 +30,8 @@ class SwiperBlock implements BlockInterface
         // Render the block.
         $context['stylesPath'] = __DIR__.'/template/styles.twig';
 
-        add_action('wp_print_footer_scripts', fn()=> $this->swiperInit($context));
+        // Print Settings
+        add_action('wp_print_footer_scripts', fn()=> Timber::render(__DIR__.'/template/settings.twig', $context));
 
         Timber::render(__DIR__.'/template/swiper.twig', $context);
     }
