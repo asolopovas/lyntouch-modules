@@ -10,12 +10,12 @@ class ImageBlock implements BlockInterface
 
     public function registerScriptsStyles()
     {
-        wp_register_style(
-            'lyntouch-image-block-editor',
-            lyntouch_root_url('/dist/css/editor.css'),
-            ['wp-edit-blocks'],
-            null
-        );
+//        wp_register_style(
+//            'lyntouch-image-block-editor',
+//            lyntouch_root_url('/dist/css/editor.css'),
+//            ['wp-edit-blocks'],
+//            null
+//        );
         wp_register_script(
             'lyntouch-image-block-js',
             lyntouch_root_url('/dist/js/image-block.js'),

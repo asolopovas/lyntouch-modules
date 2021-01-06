@@ -10,6 +10,7 @@ class SwiperBlock implements BlockInterface
 
     public function stylesAndScripts()
     {
+        wp_enqueue_script('lazysizes', 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.0/lazysizes.min.js', [], null, null);
         # Core Styles
         wp_enqueue_script('swiper-core', lyntouch_root_url('/dist/js/swiper.js'), [], null, null);
         wp_enqueue_style('swiper-core', lyntouch_root_url('/dist/css/swiper.css'), [], null);
