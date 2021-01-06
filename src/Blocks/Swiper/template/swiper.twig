@@ -1,11 +1,11 @@
-{% set typeClass = block.align == 'wide' ? 'mx-auto container px-8' : 'lg:px-0' %}
+{% set typeClass = block.align == 'wide' ? 'mx-auto container px-8' : '' %}
 <div class="wrap relative {{ typeClass }}">
     {% include stylesPath %}
     <div class="{{ block.id }} overflow-hidden">
         <div class="swiper-wrapper">
             {% for slide in fields.slides %}
                 {% set mainRatio = fields.ratio_w and fields.ratio_h ? fields.ratio_w / fields.ratio_h : 2 / 3 %}
-                <div class="swiper-slide flex justify-center pb-8 md:pb-0">
+                <div class="swiper-slide flex justify-center {{ fields.slide_class }}">
                     <picture>
                         {% for size in fields.sizes %}
                             {% set ratio = size.ratio.w and size.ratio.h ? size.ratio.w / size.ratio.h  : mainRatio %}
