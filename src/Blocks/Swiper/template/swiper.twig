@@ -8,12 +8,8 @@
                     <picture>
                         {% for size in fields.sizes %}
                             {% set ratio = size.ratio.w and size.ratio.h ? size.ratio.w / size.ratio.h  : mainRatio %}
-                            {% set width = size.width %}
-                            {% set height = width | heightByRatio(ratio) %}
-                            <source
-                                media="({{ size.media }})"
-                                data-srcset="{{ srcset( slide.url, width, height, size.dpr ) }}"
-                            >
+                            {% set width, height = size.width, size.width | heightByRatio(ratio) %}
+                            <source media="({{ size.media }})" data-srcset="{{ srcset( slide.url, width, height, size.dpr ) }}">
                         {% endfor %}
                         {% set width = fields.width ? fields.width : slide.width %}
                         {% set height = width | heightByRatio(mainRatio) %}

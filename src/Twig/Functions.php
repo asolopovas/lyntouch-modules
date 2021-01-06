@@ -17,7 +17,7 @@ class Functions
         $output = [];
         foreach ($dpr as $key => $value) {
             $multiplier = $key+1;
-            $str = $this->resize($url, $width *$multiplier, $height*$multiplier, $format);
+            $str = $this->resize($url, $width * $multiplier, $height*$multiplier, $format);
 
             $output[$key] = $key == 0 ? "$str" : "$str {$multiplier}x";
         }

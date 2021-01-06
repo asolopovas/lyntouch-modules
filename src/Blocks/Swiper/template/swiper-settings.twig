@@ -1,42 +1,44 @@
 <script>
-    (function() {
-        {% set breakpoint = fields.start_breakpoint  ? fields.start_breakpoint : false %}
-        let swiperBlock = {}
-        let swiperSettings = {
-            el: '.{{ block.id }}',
-            active: false,
-            config: {
-                loop: true,
-                slidesPerView: {{ fields.slides_per_view }},
-                spaceBetween: 1,
-                // Navigation arrows
-                navigation: {
-                    nextEl: '.swiper-right',
-                    prevEl: '.swiper-left',
+    document.addEventListener('DOMContentLoaded',
+        function() {
+            {% set breakpoint = fields.start_breakpoint  ? fields.start_breakpoint : false %}
+            let swiperBlock = {}
+            let swiperSettings = {
+                el: '.{{ block.id }}',
+                active: false,
+                config: {
+                    loop: true,
+                    slidesPerView: {{ fields.slides_per_view }},
+                    spaceBetween: 1,
+                    // Navigation arrows
+                    navigation: {
+                        nextEl: '.swiper-right',
+                        prevEl: '.swiper-left',
+                    },
                 },
-            },
-        }
-
-        {% if breakpoint %}
-        swiperSettings.breakpoint = {{ breakpoint }}
-        if (window.innerWidth >= swiperSettings.breakpoint) {
-            swiperBlock = new Swiper(swiperSettings.el, swiperSettings.config)
-            swiperSettings.active = true
-        }
-        addEventListener('resize', debounce(() => {
-            if (window.innerWidth <= swiperSettings.breakpoint && swiperSettings.active === true) {
-                swiperBlock.destroy(true, true)
-                swiperSettings.active = false
             }
-            if (window.innerWidth > swiperSettings.breakpoint && swiperSettings.active === false) {
+
+            {% if breakpoint %}
+            swiperSettings.breakpoint = {{ breakpoint }}
+            if (window.innerWidth >= swiperSettings.breakpoint) {
                 swiperBlock = new Swiper(swiperSettings.el, swiperSettings.config)
                 swiperSettings.active = true
             }
-        }, 300))
-        {% else %}
-        swiperBlock = new Swiper(swiperSettings.el, swiperSettings.config)
-        swiperSettings.active = true
-        {% endif %}
+            addEventListener('resize', debounce(() => {
+                if (window.innerWidth <= swiperSettings.breakpoint && swiperSettings.active === true) {
+                    swiperBlock.destroy(true, true)
+                    swiperSettings.active = false
+                }
+                if (window.innerWidth > swiperSettings.breakpoint && swiperSettings.active === false) {
+                    swiperBlock = new Swiper(swiperSettings.el, swiperSettings.config)
+                    swiperSettings.active = true
+                }
+            }, 300))
+            {% else %}
+            swiperBlock = new Swiper(swiperSettings.el, swiperSettings.config)
+            swiperSettings.active = true
+            {% endif %}
 
-    })()
+        },
+    )
 </script>

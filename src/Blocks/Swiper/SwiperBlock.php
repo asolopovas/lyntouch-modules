@@ -8,9 +8,16 @@ use Timber\Timber;
 class SwiperBlock implements BlockInterface
 {
 
-    public function swiperInit($context)
+    public function stylesAndScripts()
     {
-        Timber::render(__DIR__.'/template/swiper-settings.twig', $context);
+        # Core Styles
+//        dd(lyntouch_root_url('/dist/js/swiper.js'));
+        wp_enqueue_scripts('swiperCoreJs', lyntouch_root_url('/dist/js/swiper.js'), null, null);
+//        wp_enqueue_style('swiper-block-core-css', lyntouch_root_url('/dist/css/swiper.css'), false);
+
+        // Inline Styles
+        $styles = Timber::compile_string(__DIR__.'/template/swiper-styles.twig', Timber::context());
+        wp_add_inline_style('custom-css', $styles);
     }
 
     public function renderSwiperBlock($block, $content = '', $is_preview = false)
@@ -27,8 +34,8 @@ class SwiperBlock implements BlockInterface
         $context['is_preview'] = $is_preview;
         // Render the block.
 
-        add_action('wp_print_footer_scripts', fn() => $this->swiperInit($context));
-//        add_action('admin_footer', fn() => $this->swiperInit($context), PHP_INT_MAX);
+        add_action('wp_print_footer_scripts', fn() => Timber::render(__DIR__.'/template/swiper-settings.twig', $context));
+        //        add_action('admin_footer', fn() => $this->swiperInit($context), PHP_INT_MAX);
         Timber::render(__DIR__.'/template/swiper.twig', $context);
     }
 
@@ -40,8 +47,6 @@ class SwiperBlock implements BlockInterface
             'description'     => __('Slider Block'),
             'render_callback' => [$this, 'renderSwiperBlock'],
             'category'        => 'formatting',
-            'enqueue_style'   => lyntouch_root_url('/dist/css/swiper.css'),
-            'enqueue_script'  => lyntouch_root_url('/dist/js/swiper.js'),
             'icon'            => 'dashicons-cover-image',
             'keywords'        => ['full-width-slider', 'swiper'],
         ];
@@ -51,5 +56,7 @@ class SwiperBlock implements BlockInterface
     public function setup(): void
     {
         add_action('acf/init', [$this, 'registerSwiperBlock']);
+        add_action('wp_enqueue_scripts', [$this, 'stylesAndScripts']);
+        add_action('admin_enqueue_scripts', [$this, 'stylesAndScripts']);
     }
 }
