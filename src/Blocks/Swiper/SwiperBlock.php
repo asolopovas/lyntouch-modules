@@ -11,9 +11,8 @@ class SwiperBlock implements BlockInterface
     public function stylesAndScripts()
     {
         # Core Styles
-//        dd(lyntouch_root_url('/dist/js/swiper.js'));
-        wp_enqueue_scripts('swiperCoreJs', lyntouch_root_url('/dist/js/swiper.js'), null, null);
-//        wp_enqueue_style('swiper-block-core-css', lyntouch_root_url('/dist/css/swiper.css'), false);
+        wp_enqueue_script('swiperCoreJs', lyntouch_root_url('/dist/js/swiper.js'), [], null, null);
+        wp_enqueue_style('swiper-block-core-css', lyntouch_root_url('/dist/css/swiper.css'), false);
 
         // Inline Styles
         $styles = Timber::compile_string(__DIR__.'/template/swiper-styles.twig', Timber::context());
