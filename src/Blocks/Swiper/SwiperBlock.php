@@ -11,12 +11,8 @@ class SwiperBlock implements BlockInterface
     public function stylesAndScripts()
     {
         # Core Styles
-        wp_enqueue_script('swiperCoreJs', lyntouch_root_url('/dist/js/swiper.js'), [], null, null);
-        wp_enqueue_style('swiper-block-core-css', lyntouch_root_url('/dist/css/swiper.css'), false);
-
-        // Inline Styles
-        $styles = Timber::compile_string(__DIR__.'/template/swiper-styles.twig', Timber::context());
-        wp_add_inline_style('custom-css', $styles);
+        wp_enqueue_script('swiper-core', lyntouch_root_url('/dist/js/swiper.js'), [], null, null);
+        wp_enqueue_style('swiper-core', lyntouch_root_url('/dist/css/swiper.css'), [], null);
     }
 
     public function renderSwiperBlock($block, $content = '', $is_preview = false)
@@ -32,9 +28,8 @@ class SwiperBlock implements BlockInterface
         // Store $is_preview value.
         $context['is_preview'] = $is_preview;
         // Render the block.
+        $context['stylesPath']  = __DIR__.'/template/swiper-styles.twig';
 
-        add_action('wp_print_footer_scripts', fn() => Timber::render(__DIR__.'/template/swiper-settings.twig', $context));
-        //        add_action('admin_footer', fn() => $this->swiperInit($context), PHP_INT_MAX);
         Timber::render(__DIR__.'/template/swiper.twig', $context);
     }
 

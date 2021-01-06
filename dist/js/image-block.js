@@ -371,7 +371,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			return checkDeferredModules();
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunklyntouch_blocks_cgb_guten_block"] = self["webpackChunklyntouch_blocks_cgb_guten_block"] || [];
+/******/ 		var chunkLoadingGlobal = self["webpackChunklyntouch_wp_code"] = self["webpackChunklyntouch_wp_code"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 		
