@@ -9,11 +9,11 @@
  * License: GPL2+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
  *
- * @package CGB
  */
 
 use Lyntouch\Gutenberg\Hooks;
 use Lyntouch\Blocks\Image\ImageBlock;
+use Lyntouch\Blocks\Cards\Cards;
 use Lyntouch\Bootstrap\App;
 use Lyntouch\Blocks\Swiper\SwiperBlock;
 use Lyntouch\Twig\TwigHelper;
@@ -33,6 +33,7 @@ add_action('init', [new ImageBlock, 'setup']);
 add_action('init', [new Hooks, 'setup']);
 
 (new SwiperBlock())->setup();
+(new Cards())->setup();
 
 add_filter('timber/twig', function($twig) {
     $twig_helper = new TwigHelper($twig);

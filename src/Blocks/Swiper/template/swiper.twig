@@ -18,7 +18,7 @@
                         <img src="{{ placeholder(width, height) }}"
                              data-src="{{ resize(slide.url, width, height) }}"
                             {% if fields.dpr %}
-                                data-srcset=" {{ srcset(slide.url, width, height, fields.dpr) }}"
+                                data-srcset="{{ srcset(slide.url, width, height, fields.dpr) }}"
                             {% endif %}
                              class="w-full lazyload translate3d"
                              width="{{ width }}"

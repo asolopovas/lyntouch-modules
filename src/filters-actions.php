@@ -113,34 +113,7 @@ function modify_nav_menu_args($args)
     return $args;
 }
 
-//-----------------------------------------
-// Search Form Modifications
-//-----------------------------------------
-add_action('after_setup_theme', 'wpdocs_after_setup_theme');
-function wpdocs_after_setup_theme()
-{
-    add_theme_support('html5', ['search-form']);
-}
 
-add_filter('get_search_form', 'customer_search');
-function custom_search_form($form)
-{
-    $form = '
-    <form role="search"     
-          method="get"      
-          class="search-form" 
-          action="'.home_url('/').'" >
-        <label for="s" class="search-label text-uppercase text-left">Search</label>
-        <input type="text" 
-               class="search-input"  
-               value="'.get_search_query().'"
-               placeholder="Search..."
-               name="s"
-               id="s" />
-        <input type="submit" class="search-btn" value="Search" /></form>';
-
-    return $form;
-}
 
 //-----------------------------------------
 // Search Only Posts

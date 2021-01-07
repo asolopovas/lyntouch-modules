@@ -1,19 +1,18 @@
 <?php
 
-namespace Lyntouch\Blocks\Swiper;
+namespace Lyntouch\Blocks\Cards;
 
 use Lyntouch\Contracts\BlockInterface;
 use Timber\Timber;
 
-class SwiperBlock implements BlockInterface
+class Cards implements BlockInterface
 {
 
     public function stylesAndScripts()
     {
-        wp_enqueue_script('lazysizes', 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.0/lazysizes.min.js', [], null, null);
         # Core Styles
-        wp_enqueue_script('swiper-core', lyntouch_root_url('/dist/js/swiper.js'), [], null, null);
-        wp_enqueue_style('swiper-core', lyntouch_root_url('/dist/css/swiper.css'), [], null);
+//        wp_enqueue_script('cards-core', lyntouch_root_url('/dist/js/swiper.js'), [], null, null);
+//        wp_enqueue_style('cards-core', lyntouch_root_url('/dist/css/swiper.css'), [], null);
     }
 
     public function renderSwiperBlock($block, $content = '', $is_preview = false)
@@ -28,21 +27,16 @@ class SwiperBlock implements BlockInterface
         $context['fields'] = get_fields();
         // Store $is_preview value.
         $context['is_preview'] = $is_preview;
-        // Render the block.
-        $context['stylesPath'] = __DIR__.'/template/styles.twig';
 
-        // Print Settings
-        add_action('wp_print_footer_scripts', fn()=> Timber::render(__DIR__.'/template/settings.twig', $context));
-
-        Timber::render(__DIR__.'/template/swiper.twig', $context);
+        Timber::render(__DIR__.'/template/cards.twig', $context);
     }
 
     public function registerSwiperBlock(): void
     {
         $args = [
-            'name'            => 'swiper',
-            'title'           => __('Swiper'),
-            'description'     => __('Responsive Slider Block'),
+            'name'            => 'lyntouch-cards',
+            'title'           => __('Cards'),
+            'description'     => __('Image Text Cards'),
             'render_callback' => [$this, 'renderSwiperBlock'],
             'category'        => 'formatting',
             'icon'            => file_get_contents(__DIR__. '/icon.svg'),
@@ -54,7 +48,5 @@ class SwiperBlock implements BlockInterface
     public function setup(): void
     {
         add_action('acf/init', [$this, 'registerSwiperBlock']);
-        add_action('wp_enqueue_scripts', [$this, 'stylesAndScripts']);
-        add_action('admin_enqueue_scripts', [$this, 'stylesAndScripts']);
     }
 }
