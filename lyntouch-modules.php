@@ -42,3 +42,7 @@ add_filter('timber/twig', function($twig) {
 
     return $twig;
 });
+
+add_action('admin_enqueue_scripts', function() {
+    wp_enqueue_script('lazysizes', 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.0/lazysizes.min.js', [], null, null);
+});

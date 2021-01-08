@@ -6,6 +6,7 @@
             {% for slide in fields.slides %}
                 {% set mainRatio = fields.ratio_w and fields.ratio_h ? fields.ratio_w / fields.ratio_h : 2 / 3 %}
                 <div class="swiper-slide flex justify-center {{ fields.slide_class }}">
+
                     <picture>
                         {% for size in fields.sizes %}
                             {% set ratio = size.ratio.w and size.ratio.h ? size.ratio.w / size.ratio.h  : mainRatio %}
@@ -23,7 +24,7 @@
                              class="w-full lazyload translate3d"
                              width="{{ width }}"
                              height="{{ height }}"
-                             alt="{{ alt }}"
+                             alt="{{ slide.alt ? slide.alt : slide.title }}"
                         />
                     </picture>
                 </div>

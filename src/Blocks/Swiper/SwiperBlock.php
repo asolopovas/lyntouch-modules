@@ -8,12 +8,19 @@ use Timber\Timber;
 class SwiperBlock implements BlockInterface
 {
 
+    public function scripts()
+    {
+        wp_enqueue_script('swiper-core', lyntouch_root_url('/dist/js/swiper.js'), [], null, null);
+    }
+
+    public function styles()
+    {
+        wp_enqueue_style('swiper-core', lyntouch_root_url('/dist/css/swiper.css'), [], null);
+    }
     public function stylesAndScripts()
     {
-        wp_enqueue_script('lazysizes', 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.0/lazysizes.min.js', [], null, null);
-        # Core Styles
-        wp_enqueue_script('swiper-core', lyntouch_root_url('/dist/js/swiper.js'), [], null, null);
-        wp_enqueue_style('swiper-core', lyntouch_root_url('/dist/css/swiper.css'), [], null);
+        $this->styles();
+        $this->scripts();
     }
 
     public function renderSwiperBlock($block, $content = '', $is_preview = false)
@@ -30,6 +37,8 @@ class SwiperBlock implements BlockInterface
         $context['is_preview'] = $is_preview;
         // Render the block.
         $context['stylesPath'] = __DIR__.'/template/styles.twig';
+        // Is Admin
+        $context['is_admin'] = is_admin();
 
         // Print Settings
         add_action('wp_print_footer_scripts', fn()=> Timber::render(__DIR__.'/template/settings.twig', $context));
@@ -51,10 +60,12 @@ class SwiperBlock implements BlockInterface
         acf_register_block_type($args);
     }
 
+
     public function setup(): void
     {
         add_action('acf/init', [$this, 'registerSwiperBlock']);
         add_action('wp_enqueue_scripts', [$this, 'stylesAndScripts']);
-        add_action('admin_enqueue_scripts', [$this, 'stylesAndScripts']);
+        add_action('admin_enqueue_scripts', [$this, 'styles']);
+
     }
 }

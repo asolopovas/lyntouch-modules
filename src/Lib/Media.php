@@ -19,8 +19,9 @@ class Media
     public int $quality = 90;
 
     public function __construct($src, $width, $height, $format = 'jpg')
-
     {
+        if (!$src) return '';
+
         if (  filter_var($src, FILTER_VALIDATE_URL) ) {
             $this->url = $src   ? $src : $this->urlFromPath($src);
             $this->srcPath = ABSPATH.ltrim(parse_url($src)['path'], '/');
