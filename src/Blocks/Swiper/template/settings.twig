@@ -1,7 +1,7 @@
 <script>
     document.addEventListener('DOMContentLoaded',
         function() {
-            {% set breakpoint = fields.start_breakpoint  ? fields.start_breakpoint : false %}
+            {% set startBreakpoint = fields.start_breakpoint  ? fields.start_breakpoint : false %}
             let swiperBlock = {}
             let swiperSettings = {
                 el: '.{{ block.id }}',
@@ -9,16 +9,26 @@
                 config: {
                     loop: true,
                     slidesPerView: {{ fields.slides_per_view }},
-                    spaceBetween: 1,
+                    spaceBetween: {{ fields.space_between | default(1)}},
                     // Navigation arrows
                     navigation: {
                         nextEl: '.swiper-right',
                         prevEl: '.swiper-left',
                     },
-                },
+                {% if fields.breakpoints %}
+                    breakpoints: {
+                        {% for breakpoint in fields.breakpoints %}
+                            {{ breakpoint.width }} : {
+                                slidesPerView: {{ breakpoint.slides }},
+                                spaceBetween: {{ breakpoint.space }}
+                            },
+                        {% endfor %}
+                    }
+                {% endif %}
             }
+        }
 
-            {% if breakpoint %}
+            {% if startBreakpoint %}
             swiperSettings.breakpoint = {{ breakpoint }}
             if (window.innerWidth >= swiperSettings.breakpoint) {
                 swiperBlock = new Swiper(swiperSettings.el, swiperSettings.config)
