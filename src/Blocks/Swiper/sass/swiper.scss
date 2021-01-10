@@ -12,9 +12,10 @@ $colors: ("white": #ffffff, "black": #000000) !default;
     width: auto;
     align-items: center;
     background: transparent;
+    margin-right: 1px;
 }
 
-.swipe-arrows {
+.swiper-left, .swiper-right {
     &:focus {
         outline: none;
     }
@@ -27,9 +28,9 @@ $colors: ("white": #ffffff, "black": #000000) !default;
 }
 
 .swiper-left {
-    left: 50px;
+    left: 0;
 }
 
 .swiper-right {
-    right: 50px;
+    right: 0;
 }

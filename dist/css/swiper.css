@@ -16,7 +16,6 @@
 
 .swiper-wrapper {
   position: relative;
-  height: 100%;
   z-index: 1;
   display: flex;
   transition-property: transform;
@@ -60,9 +59,10 @@
   width: auto;
   align-items: center;
   background: transparent;
+  margin-right: 1px;
 }
 
-.swipe-arrows {
+.swiper-left, .swiper-right {
   cursor: pointer;
   z-index: 1;
   background: 0;
@@ -70,14 +70,14 @@
   top: 50%;
   transform: translateY(-50%);
 }
-.swipe-arrows:focus {
+.swiper-left:focus, .swiper-right:focus {
   outline: none;
 }
 
 .swiper-left {
-  left: 50px;
+  left: 0;
 }
 
 .swiper-right {
-  right: 50px;
+  right: 0;
 }
