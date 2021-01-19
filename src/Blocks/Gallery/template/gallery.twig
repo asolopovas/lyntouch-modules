@@ -4,7 +4,7 @@
 
 <div itemscope
      itemtype="http://schema.org/ImageGallery"
-     class="{{ block.id }} masonry pt-4">
+     class="{{ block.id }} masonry">
     {% for image in images %}
         {% set portrait = image.height > image.width %}
         {% set mainRatio = ratio_w and ratio_h ? ratio(ratio_w, ratio_h, portrait) : 3 / 2 %}
@@ -12,7 +12,7 @@
             <a href="{{ image.url }}"
                itemprop="contentUrl"
                data-size="{{ image.width }}x{{ image.height }}"
-               class="thumb">
+               class="item">
                 <picture>
                     {% for size in settings.sizes %}
                         {% set ratio = size.ratio.w and size.ratio.h ? ratio(size.ratio.w, size.ratio.h, portrait) : mainRatio %}
@@ -27,7 +27,7 @@
                         {% if fields.dpr %}
                             data-srcset="{{ srcset(image.url, width, height, settings.dpr) }}"
                         {% endif %}
-                         class="w-full lazyload translate3d pb-4"
+                         class="w-full lazyload translate3d"
                          width="{{ width }}"
                          height="{{ height }}"
                          alt="{{ image.alt ? image.alt : image.title }}"

@@ -727,10 +727,15 @@ a.pswp__share--download:hover {
 
 .masonry {
   transition: all 0.5s ease-in-out;
-  -moz-column-gap: 30px;
-       column-gap: 30px;
+  -moz-column-gap: 0.4rem;
+       column-gap: 0.4rem;
   -moz-column-fill: initial;
        column-fill: initial;
+}
+
+.item {
+  display: block;
+  padding-bottom: 0.4rem;
 }
 
 @media only screen and (max-width: 1023px) and (min-width: 768px) {
