@@ -1,38 +1,83 @@
-{% set cards = fields.cards %}
+{% set images = fields.images %}
 {% set settings = fields.settings %}
-{% set typeClass = block.align == 'wide' ? 'mx-auto container px-8' : '' %}
-{% set cardStyle = block.align == 'wide' ? 'style="max-width: 1200px"' : '' %}
+{% set ratio_w,ratio_h = settings.ratio_width,settings.ratio_height %}
 
-<div class="lyntouch-cards-wrap {{ typeClass }}" {{ cardStyle }}>
-    <div class="flex flex-wrap justify-center -mx-4">
-        {% for card in fields.cards %}
-            <div class="flex flex-col justify-start {{ fields.card_class }}">
-                <h2 class="card-title text-center text-xl" style="min-height: 64px">{{ card.title }}</h2>
-                {% if card.image %}
-                    {% set mainRatio = settings.ratio_w and settings.ratio_h ? settings.ratio_w / settings.ratio_h : 3 / 2 %}
-                    <picture>
-                         {% for size in settings.sizes %}
-                         {% set ratio = size.ratio.w and size.ratio.h ? size.ratio.w / size.ratio.h  : mainRatio %}
-                         {% set width, height = size.width, size.width | heightByRatio(ratio) %}
-                         <source media="({{ size.media }})" data-srcset="{{ srcset( card.image.url, width, height, size.dpr ) }}">
-                         {% endfor %}
-                        {% set width = settings.width ? settings.width : card.image.width %}
-                        {% set height = width | heightByRatio(mainRatio) %}
+<div itemscope
+     itemtype="http://schema.org/ImageGallery"
+     class="{{ block.id }} masonry pt-4">
+    {% for image in images %}
+        {% set portrait = image.height > image.width %}
+        {% set mainRatio = ratio_w and ratio_h ? ratio(ratio_w, ratio_h, portrait) : 3 / 2 %}
+        <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+            <a href="{{ image.url }}"
+               itemprop="contentUrl"
+               data-size="{{ image.width }}x{{ image.height }}"
+               class="thumb">
+                <picture>
+                    {% for size in settings.sizes %}
+                        {% set ratio = size.ratio.w and size.ratio.h ? ratio(size.ratio.w, size.ratio.h, portrait) : mainRatio %}
+                        {% set width, height = size.width, size.width | heightByRatio(ratio) %}
+                        <source media="({{ size.media }})" data-srcset="{{ srcset( image.url, width, height, size.dpr ) }}">
+                    {% endfor %}
+                    {% set width = settings.width ? settings.width : image.width %}
+                    {% set height = width | heightByRatio(mainRatio) %}
 
-                        <img src="{{ placeholder(width, height) }}"
-                             data-src="{{ resize(card.image.url, width, height) }}"
-                            {% if fields.dpr %}
-                                data-srcset="{{ srcset(card.image.url, width, height, settings.dpr) }}"
-                            {% endif %}
-                             class="w-full lazyload translate3d pb-4"
-                             width="{{ width }}"
-                             height="{{ height }}"
-                             alt="{{ card.image.alt ? card.image.alt : card.image.title }}"
-                        />
-                    </picture>
+                    <img src="{{ placeholder(width, height) }}"
+                         data-src="{{ resize(image.url, width, height) }}"
+                        {% if fields.dpr %}
+                            data-srcset="{{ srcset(image.url, width, height, settings.dpr) }}"
+                        {% endif %}
+                         class="w-full lazyload translate3d pb-4"
+                         width="{{ width }}"
+                         height="{{ height }}"
+                         alt="{{ image.alt ? image.alt : image.title }}"
+                    />
+                </picture>
+                {% if thumb.caption %}
+                    <span itemprop="name">{{ thumb.title }}</span>
+                {% else %}
+                    <span class="zoom"></span>
                 {% endif %}
-                <div class="card-text">{{ card.text }}</div>
-            </div>
-        {% endfor %}
-    </div>
+            </a>
+        </figure>
+    {% endfor %}
 </div>
+{% include root_el %}
+
+
+{# {% set typeClass = block.align == 'wide' ? 'mx-auto container px-8' : '' %} #}
+{# {% set cardStyle = block.align == 'wide' ? 'style="max-width: 1200px"' : '' %} #}
+
+{# <div class="lyntouch-cards-wrap {{ typeClass }}" {{ cardStyle }}> #}
+{# <div class="flex flex-wrap justify-center -mx-4"> #}
+{# {% for card in fields.cards %} #}
+{# <div class="flex flex-col justify-start {{ fields.card_class }}"> #}
+{# <h2 class="card-title text-center text-xl" style="min-height: 64px">{{ card.title }}</h2> #}
+{# {% if card.image %} #}
+{# {% set mainRatio = settings.ratio_w and settings.ratio_h ? settings.ratio_w / settings.ratio_h : 3 / 2 %} #}
+{# <picture> #}
+{# {% for size in settings.sizes %} #}
+{# {% set ratio = size.ratio.w and size.ratio.h ? size.ratio.w / size.ratio.h  : mainRatio %} #}
+{# {% set width, height = size.width, size.width | heightByRatio(ratio) %} #}
+{# <source media="({{ size.media }})" data-srcset="{{ srcset( card.image.url, width, height, size.dpr ) }}"> #}
+{# {% endfor %} #}
+{# {% set width = settings.width ? settings.width : card.image.width %} #}
+{# {% set height = width | heightByRatio(mainRatio) %} #}
+
+{# <img src="{{ placeholder(width, height) }}" #}
+{# data-src="{{ resize(card.image.url, width, height) }}" #}
+{# {% if fields.dpr %} #}
+{# data-srcset="{{ srcset(card.image.url, width, height, settings.dpr) }}" #}
+{# {% endif %} #}
+{# class="w-full lazyload translate3d pb-4" #}
+{# width="{{ width }}" #}
+{# height="{{ height }}" #}
+{# alt="{{ card.image.alt ? card.image.alt : card.image.title }}" #}
+{# /> #}
+{# </picture> #}
+{# {% endif %} #}
+{# <div class="card-text">{{ card.text }}</div> #}
+{# </div> #}
+{# {% endfor %} #}
+{# </div> #}
+{# </div> #}

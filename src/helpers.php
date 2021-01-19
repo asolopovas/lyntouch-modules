@@ -19,12 +19,6 @@ if (!function_exists('di')) {
     }
 }
 
-/**
- * @param int       $width
- * @param float|int $ratio
- *
- * @return int
- */
 function heightByRatio(int $width, float $ratio = 2 / 3): int
 {
     return (int) round($width / $ratio);

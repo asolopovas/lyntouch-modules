@@ -53,6 +53,9 @@ class Functions
         }
     }
 
-
+    public function ratio($ratio_w, $ratio_h, $portrait)
+    {
+        return $portrait ? $ratio_h / $ratio_w  : $ratio_w / $ratio_h;
+    }
 
 }

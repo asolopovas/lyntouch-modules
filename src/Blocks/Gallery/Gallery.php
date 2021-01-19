@@ -11,8 +11,8 @@ class Gallery implements BlockInterface
     public function stylesAndScripts()
     {
         # Core Styles
-//        wp_enqueue_script('cards-core', lyntouch_root_url('/dist/js/photoswipe.js'), [], null, null);
-//        wp_enqueue_style('cards-core', lyntouch_root_url('/dist/css/swiper.css'), [], null);
+        wp_enqueue_script('photoswipe-core', lyntouch_root_url('/dist/js/photoswipe.js'), [], null, null);
+        wp_enqueue_style('photoswipe-core', lyntouch_root_url('/dist/css/photoswipe.css'), [], null);
     }
 
     public function renderSwiperBlock($block, $content = '', $is_preview = false)
@@ -28,6 +28,8 @@ class Gallery implements BlockInterface
         // Store $is_preview value.
         $context['is_preview'] = $is_preview;
 
+        $context['root_el'] = __DIR__.'/template/photoswipe.twig';
+
         Timber::render(__DIR__.'/template/gallery.twig', $context);
     }
 
@@ -38,6 +40,7 @@ class Gallery implements BlockInterface
             'title'           => __('Gallery'),
             'description'     => __('Image Gallery'),
             'render_callback' => [$this, 'renderSwiperBlock'],
+            'enqueue_assets' => array($this, 'stylesAndScripts'),
             'category'        => 'formatting',
             'icon'            => file_get_contents(__DIR__. '/icon.svg'),
             'keywords'        => ['gallery'],
@@ -49,4 +52,5 @@ class Gallery implements BlockInterface
     {
         add_action('acf/init', [$this, 'registerSwiperBlock']);
     }
+
 }

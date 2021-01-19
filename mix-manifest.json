@@ -3,6 +3,7 @@
     "/dist/js/image-block.js": "/dist/js/image-block.js",
     "/dist/js/swiper.js": "/dist/js/swiper.js",
     "/dist/js/hooks.js": "/dist/js/hooks.js",
+    "/dist/js/photoswipe.js": "/dist/js/photoswipe.js",
     "/dist/css/photoswipe.css": "/dist/css/photoswipe.css",
     "/dist/css/swiper.css": "/dist/css/swiper.css"
 }

@@ -13,5 +13,4 @@ class Filters
         return heightByRatio((int)$width, $ratio);
     }
 
-
 }

@@ -42,6 +42,7 @@ class SwiperBlock implements BlockInterface
 
         // Print Settings
         add_action('wp_print_footer_scripts', fn()=> Timber::render(__DIR__.'/template/settings.twig', $context));
+        add_action('wp_enqueue_scripts', [$this, 'stylesAndScripts']);
 
         Timber::render(__DIR__.'/template/swiper.twig', $context);
     }
@@ -53,6 +54,7 @@ class SwiperBlock implements BlockInterface
             'title'           => __('Swiper'),
             'description'     => __('Responsive Slider Block'),
             'render_callback' => [$this, 'renderSwiperBlock'],
+            'enqueue_assets' => array($this, 'stylesAndScripts'),
             'category'        => 'formatting',
             'icon'            => file_get_contents(__DIR__. '/icon.svg'),
             'keywords'        => ['full-width-slider', 'swiper'],
@@ -64,8 +66,6 @@ class SwiperBlock implements BlockInterface
     public function setup(): void
     {
         add_action('acf/init', [$this, 'registerSwiperBlock']);
-        add_action('wp_enqueue_scripts', [$this, 'stylesAndScripts']);
-        add_action('admin_enqueue_scripts', [$this, 'styles']);
 
     }
 }
