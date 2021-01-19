@@ -13,6 +13,7 @@
 
 use Lyntouch\Gutenberg\Hooks;
 use Lyntouch\Blocks\Image\ImageBlock;
+use Lyntouch\Blocks\Gallery\Gallery;
 use Lyntouch\Blocks\Cards\Cards;
 use Lyntouch\Bootstrap\App;
 use Lyntouch\Blocks\Swiper\SwiperBlock;
@@ -33,6 +34,7 @@ add_action('init', [new ImageBlock, 'setup']);
 add_action('init', [new Hooks, 'setup']);
 
 (new SwiperBlock())->setup();
+(new Gallery())->setup();
 (new Cards())->setup();
 
 add_filter('timber/twig', function($twig) {

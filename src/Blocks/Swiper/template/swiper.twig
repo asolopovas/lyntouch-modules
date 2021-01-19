@@ -11,7 +11,6 @@
                             {% set ratio = size.ratio.w and size.ratio.h ? size.ratio.w / size.ratio.h  : mainRatio %}
                             {% set width, height = size.width, size.width | heightByRatio(ratio) %}
                             <source media="({{ size.media }})"
-                                    srcset="{{ placeholder(width, height) }}"
                                     data-srcset="{{ srcset( slide.url, width, height, size.dpr ) }}">
                         {% endfor %}
                         {% set width = fields.width ? fields.width : slide.width %}

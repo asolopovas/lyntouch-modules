@@ -229,6 +229,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/Blocks/Gallery/sass/photoswipe.scss":
+/*!*************************************************!*\
+  !*** ./src/Blocks/Gallery/sass/photoswipe.scss ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./src/Blocks/Image/editor.scss":
 /*!**************************************!*\
   !*** ./src/Blocks/Image/editor.scss ***!
@@ -326,7 +338,8 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		
 /******/ 		var deferredModules = [
 /******/ 			["./src/Blocks/Image/image-block.js"],
-/******/ 			["./src/Blocks/Swiper/sass/swiper.scss"]
+/******/ 			["./src/Blocks/Swiper/sass/swiper.scss"],
+/******/ 			["./src/Blocks/Gallery/sass/photoswipe.scss"]
 /******/ 		];
 /******/ 		// no chunk on demand loading
 /******/ 		

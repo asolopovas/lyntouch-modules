@@ -8,7 +8,6 @@ $colors: ("white": #ffffff, "black": #000000) !default;
 @import "./components/core/core";
 
 .swiper-slide {
-    display: flex;
     width: auto;
     align-items: center;
     background: transparent;
@@ -28,9 +27,10 @@ $colors: ("white": #ffffff, "black": #000000) !default;
 }
 
 .swiper-left {
-    left: 0;
+    @apply left-2
+    left: 32px;
 }
 
 .swiper-right {
-    right: 0;
+    right: 32px;
 }

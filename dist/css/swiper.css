@@ -55,7 +55,6 @@
 }
 
 .swiper-slide {
-  display: flex;
   width: auto;
   align-items: center;
   background: transparent;
@@ -75,9 +74,10 @@
 }
 
 .swiper-left {
-  left: 0;
+  @apply left-2
+    left: 32px;
 }
 
 .swiper-right {
-  right: 0;
+  right: 32px;
 }

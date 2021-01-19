@@ -61,10 +61,13 @@ add_action('manage_posts_custom_column', 'featured_image_render_post_columns', 1
 function featured_image_render_post_columns($column_name, $id)
 {
     if ($column_name == 'featured_image' && $url = get_the_post_thumbnail_url($id)) {
-        $thumb = media_resize($url, 300, 300);
-        echo "
-            <img src=\"$thumb\" width=\"300\" height=\"300\">
-            ";
+        $image = [
+            'src'    => resize($url, 300, 300),
+            'width'  => 300,
+            'height' => 300,
+        ];
+
+        Timber::render_string('<img src="{{ src }}" width="{{ width }}" height="{{ height }}"/>', $image);
     }
 }
 
@@ -112,8 +115,6 @@ function modify_nav_menu_args($args)
 
     return $args;
 }
-
-
 
 //-----------------------------------------
 // Search Only Posts
@@ -168,18 +169,18 @@ function clear_cache_fn()
 
 function clear_cache_on_post_save($post_id)
 {
-        $permalink = get_permalink($post_id);
-        $_GET['path'] = parse_url($permalink)['path'];
-        $loader = di(Loader::class);
-        $loader->clear_cache_timber();
-        $loader->clear_cache_twig();
-        clear_cache_fn();
-        try {
-            $client = new Client();
-            $client->request('GET', $permalink, ['verify' => false]);
-        } catch (Exception $exception) {
-            return;
-        }
+    $permalink = get_permalink($post_id);
+    $_GET['path'] = parse_url($permalink)['path'];
+    $loader = di(Loader::class);
+    $loader->clear_cache_timber();
+    $loader->clear_cache_twig();
+    clear_cache_fn();
+    try {
+        $client = new Client();
+        $client->request('GET', $permalink, ['verify' => false]);
+    } catch (Exception $exception) {
+        return;
+    }
 }
 
 //add_action('save_post', 'clear_cache_on_post_save');
