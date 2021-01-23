@@ -36,7 +36,7 @@ class Functions
         return new Media($url, $width, $height, $format);
     }
 
-    public function srcset(string $url, int $width, int $height, array $dpr, $format = 'jpg'): string
+    public function srcset(string $url, $width, $height, array $dpr, $format = 'jpg'): string
     {
         try {
             $output = [];
