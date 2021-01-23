@@ -65,8 +65,16 @@
 .pswp__button--arrow--left:before {
     content: url(/wp-content/plugins/lyntouch-modules/dist/static/arrow-left.svg);
     top: 35px;
-    height: 30px;
-    width: 32px;
+    height: 55px;
+    width: 55px;
+    position: absolute;
+}
+
+.pswp__button--arrow--right:before {
+    content: url(/wp-content/plugins/lyntouch-modules/dist/static/arrow-right.svg);
+    top: 35px;
+    height: 55px;
+    width: 55px;
     position: absolute;
 }
 
