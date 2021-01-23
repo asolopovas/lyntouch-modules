@@ -5,6 +5,7 @@ mix.js('src/Blocks/Image/image-block.js', 'dist/js').react()
    .js('src/Gutenberg/hooks.js', 'dist/js')
    .js('src/Blocks/Gallery/js/photoswipe.js', 'dist/js')
    .sass('src/Blocks/Swiper/sass/swiper.scss', 'dist/css')
+   .sass('src/assets/admin/global.scss', 'dist/css')
    .sass('src/Blocks/Gallery/sass/photoswipe.scss', 'dist/css')
    .options({processCssUrls: false})
    .webpackConfig({

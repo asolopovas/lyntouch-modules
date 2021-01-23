@@ -178,7 +178,7 @@ const openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL
   gallery.init()
 }
 
-export default (gallery) => {
+function init(gallery) {
   // loop through all gallery elements and bind events
   const galleryElements = gallery
   for (let i = 0, l = galleryElements.length; i < l; i++) {
@@ -191,3 +191,5 @@ export default (gallery) => {
     openPhotoSwipe(hashData.pid, galleryElements[hashData.gid - 1], true, true)
   }
 }
+const gallery = document.querySelectorAll('.photoswipe')
+init(gallery)

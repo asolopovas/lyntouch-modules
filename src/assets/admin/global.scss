@@ -1,9 +1,15 @@
-.wp-block {
-    max-width: 100%;
-}
-
-.container {
-    max-width: 1000px !important;
-    margin: 0 auto !important;
+.photoswipe {
+    a {
+        pointer-events: none;
+    }
+    figure {
+        margin-block-start: 0;
+        margin-block-end: 0;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+    }
+    .item {
+        padding-bottom: 0;
+    }
 }
 

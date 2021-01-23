@@ -5,5 +5,6 @@
     "/dist/js/hooks.js": "/dist/js/hooks.js",
     "/dist/js/photoswipe.js": "/dist/js/photoswipe.js",
     "/dist/css/photoswipe.css": "/dist/css/photoswipe.css",
+    "/dist/css/global.css": "/dist/css/global.css",
     "/dist/css/swiper.css": "/dist/css/swiper.css"
 }
