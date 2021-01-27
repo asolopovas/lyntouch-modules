@@ -17,6 +17,7 @@ class SwiperBlock implements BlockInterface
     {
         wp_enqueue_style('swiper-core', lyntouch_root_url('/dist/css/swiper.css'), [], null);
     }
+
     public function stylesAndScripts()
     {
         $this->styles();
@@ -39,10 +40,7 @@ class SwiperBlock implements BlockInterface
         $context['stylesPath'] = __DIR__.'/template/styles.twig';
         // Is Admin
         $context['is_admin'] = is_admin();
-
-        // Print Settings
-        add_action('wp_print_footer_scripts', fn()=> Timber::render(__DIR__.'/template/settings.twig', $context));
-        add_action('wp_enqueue_scripts', [$this, 'stylesAndScripts']);
+        $context['settings'] = __DIR__.'/template/settings.twig';
 
         Timber::render(__DIR__.'/template/swiper.twig', $context);
     }
@@ -53,19 +51,18 @@ class SwiperBlock implements BlockInterface
             'name'            => 'swiper',
             'title'           => __('Swiper'),
             'description'     => __('Responsive Slider Block'),
+            'mode'            => 'preview',
             'render_callback' => [$this, 'renderSwiperBlock'],
-            'enqueue_assets' => array($this, 'stylesAndScripts'),
+            'enqueue_assets'  => [$this, 'stylesAndScripts'],
             'category'        => 'formatting',
-            'icon'            => file_get_contents(__DIR__. '/icon.svg'),
+            'icon'            => file_get_contents(__DIR__.'/icon.svg'),
             'keywords'        => ['full-width-slider', 'swiper'],
         ];
         acf_register_block_type($args);
     }
 
-
     public function setup(): void
     {
         add_action('acf/init', [$this, 'registerSwiperBlock']);
-
     }
 }
