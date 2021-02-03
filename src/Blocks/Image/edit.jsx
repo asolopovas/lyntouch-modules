@@ -31,7 +31,6 @@ export default (props) => {
     function addVariation() {
             let newVar = JSON.parse(variations)
             let newSize = {width: null, height: null, media: null}
-            console.log(newVar)
             if (!newVar.includes(newSize)) {
                 newVar.push(newSize)
                 setAttributes({variations: JSON.stringify(newVar)})

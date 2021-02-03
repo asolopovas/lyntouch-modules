@@ -36,7 +36,6 @@ var _wp$components = wp.components,
       height: null,
       media: null
     };
-    console.log(newVar);
 
     if (!newVar.includes(newSize)) {
       newVar.push(newSize);
