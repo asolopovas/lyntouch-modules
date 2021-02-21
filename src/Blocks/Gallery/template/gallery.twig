@@ -8,10 +8,11 @@
     {% for image in images %}
         {% set portrait = image.height > image.width %}
         {% set mainRatio = ratio_w and ratio_h ? ratio(ratio_w, ratio_h, portrait) : 3 / 2 %}
+         {% set maxWidth,maxHeight = 1582, 1582 | heightByRatio(mainRatio) %}
         <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-            <a href="{{ image.url }}"
+            <a href="{{ resize(image.url, maxWidth, maxHeight) }}"
                itemprop="contentUrl"
-               data-size="{{ image.width }}x{{ image.height }}"
+               data-size="{{ maxWidth }}x{{ maxHeight }}"
                class="item">
                 <picture>
                     {% for size in settings.sizes %}
@@ -24,7 +25,7 @@
 
                     <img src="{{ placeholder(width, height) }}"
                          data-src="{{ resize(image.url, width, height) }}"
-                        {% if fields.dpr %}
+                        {% if fields.settings.dpr %}
                             data-srcset="{{ srcset(image.url, width, height, settings.dpr) }}"
                         {% endif %}
                          class="w-full lazyload translate3d"
