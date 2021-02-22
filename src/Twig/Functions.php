@@ -18,11 +18,6 @@ class Functions
         return build($name);
     }
 
-    public function dump($value)
-    {
-        dump($value);
-    }
-
     public function placeholder($width, $height, $color = '#cac9ca'): string
     {
         [$r, $g, $b] = sscanf($color, "#%02x%02x%02x");
