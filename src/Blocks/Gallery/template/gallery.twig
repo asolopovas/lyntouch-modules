@@ -8,7 +8,7 @@
     {% for image in images %}
         {% set portrait = image.height > image.width %}
         {% set mainRatio = ratio_w and ratio_h ? ratio(ratio_w, ratio_h, portrait) : 3 / 2 %}
-         {% set maxWidth,maxHeight = 1582, 1582 | heightByRatio(mainRatio) %}
+         {% set maxWidth,maxHeight = 1741, 1741 | heightByRatio(mainRatio) %}
         <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
             <a href="{{ resize(image.url, maxWidth, maxHeight) }}"
                itemprop="contentUrl"
